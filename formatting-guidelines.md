@@ -23,4 +23,4 @@ Formatting Guidelines
 
 Last edited by Author Name
 
-When updating an page, add your name to the footer.
+When updating a page, add your name to the footer.
