@@ -13,3 +13,5 @@ Barrel Development Best Practices
 - [Responsive](responsive.md)
 - [Shopify](shopify.md)
 - [WordPress](wordpress.md)
+
+[Formatting Guidelines](formatting-guidelines.md)
