@@ -2,7 +2,3 @@
 
 Ruby on Rails Best Practices
 ----------------------------
-
-- - -
-
-Last edited by

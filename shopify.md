@@ -2,7 +2,3 @@
 
 Shopify Best Practices
 ----------------------
-
-- - -
-
-Last edited by

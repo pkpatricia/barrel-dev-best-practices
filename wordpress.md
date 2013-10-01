@@ -2,7 +2,3 @@
 
 WordPress Best Practices
 ------------------------
-
-- - -
-
-Last edited by

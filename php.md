@@ -2,7 +2,3 @@
 
 PHP Best Practices
 ------------------
-
-- - -
-
-Last edited by

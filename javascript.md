@@ -15,7 +15,3 @@ JavaScript Best Practices
 		}
 	};
 	```
-		
-- - -
-
-Last edited by **Patrick Kunka**

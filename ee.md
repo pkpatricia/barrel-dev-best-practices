@@ -2,7 +2,3 @@
 
 ExpressionEngine Best Practices
 ------------------
-
-- - -
-
-Last edited by

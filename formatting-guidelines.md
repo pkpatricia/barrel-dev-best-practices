@@ -15,9 +15,3 @@ Formatting Guidelines
 	```
 	
 *	Another entry.
-
-- - -
-
-Last edited by **Jeremy Bagodics**
-
-*When updating a page, add your name to the footer.*
