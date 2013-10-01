@@ -18,6 +18,6 @@ Formatting Guidelines
 
 - - -
 
-Last edited by **Author Name**
+Last edited by **Jeremy Bagodics**
 
 *When updating a page, add your name to the footer.*
