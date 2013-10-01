@@ -3,4 +3,4 @@
 Responsive Best Practices
 -------------------------
 
-##### Last edited by
+Last edited by
