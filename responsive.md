@@ -1,1 +1,6 @@
-### Responsive Best Practices
+### Barrel Development Best Practices
+
+Responsive Best Practices
+-------------------------
+
+##### Last edited by
