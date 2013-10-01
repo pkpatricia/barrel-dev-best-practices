@@ -8,7 +8,6 @@ Formatting Guidelines
 	All code examples should be headed with an H5:
 	
 	##### Code Example
-	
 	``` javascript
 	
 	var someCode;
