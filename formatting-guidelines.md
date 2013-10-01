@@ -7,7 +7,7 @@ Formatting Guidelines
 
 	All code examples should be headed with an H5:
 	
-	##### Code Example
+	**Code Example**
 	``` javascript
 	
 	var someCode;
@@ -22,4 +22,4 @@ Formatting Guidelines
 
 Last edited by Author Name
 
-When updating a page, add your name to the footer.
+*When updating a page, add your name to the footer.*
