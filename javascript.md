@@ -80,6 +80,67 @@ JavaScript Best Practices
 	
 ### jQuery
 
+*	**Document Ready**
+
+	The document ready event should be bound only to what is required. Wrapping all javascript within a document ready function will harm performance as code will have to be evaluated and executed at the same time.
+	
+	The following pattern should be used instead:
+	
+	```javascript
+	
+	var site = {
+		init: function(){
+			// initialize 
+		}
+	};
+	
+	$(function(){
+		site.init() // On doc ready, initalize script
+	});
+	
+	```
+	
+	If conditional loading is required, the following pattern should be used to minimize the amount of code to be executed:
+	
+	var site = {
+		global: {
+			init: function(){
+				...
+			}
+		},
+		home: {
+			init: function(){
+				...
+			}
+		},
+		blog: {
+			init: function(){
+				...
+			}
+		},	
+		gallery: {
+			init: function(){
+				...
+			}
+		},
+	};
+	
+	$(function(){
+		site.global.init();
+		
+		if($('#Home').length){
+			site.home.init();
+		};
+		
+		if($('#Blog').length){
+			site.blog.init();
+		};
+		
+		if($('#Gallery').length){
+			site.gallery.init();
+		};
+	});
+
 *	**Cache jQuery Objects**
 
 	Instantiating jQuery objects is expensive and should be done sparingly. Whenever the jQuery object of a DOM node is required more than once, it should therefore be cached as a variable to avoid having to call the jQuery method multiple times. 
@@ -166,7 +227,7 @@ JavaScript Best Practices
 	
 	//jQuery
 	
-	var $newSlide = $('<div class="slide"></div>);
+	var $newSlide = $('<div class="slide"></div>');
 	
 	$hero.append($newSlide);
 	
