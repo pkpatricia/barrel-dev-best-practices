@@ -80,7 +80,7 @@ JavaScript Best Practices
 	
 ### jQuery
 
-*	**Document Ready**
+*	**Using "Document Ready"**
 
 	The document ready event should be bound only to what is required. Wrapping all javascript within a document ready function will harm performance as code will have to be evaluated and executed at the same time.
 	
@@ -101,6 +101,8 @@ JavaScript Best Practices
 	```
 	
 	If conditional loading is required, the following pattern should be used to minimize the amount of code to be executed:
+	
+	```javascript
 	
 	var site = {
 		global: {
@@ -140,6 +142,8 @@ JavaScript Best Practices
 			site.gallery.init();
 		};
 	});
+	
+	```
 
 *	**Cache jQuery Objects**
 
