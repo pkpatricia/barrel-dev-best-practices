@@ -16,7 +16,7 @@ JavaScript Best Practices
 	var site = {
 		myVariable: false,
 		myMethod: function(){
-		
+
 		}
 	};
 	```
