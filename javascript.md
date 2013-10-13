@@ -145,7 +145,7 @@ JavaScript Best Practices
 
 *	**Cache jQuery Objects**
 
-	Instantiating jQuery objects is expensive and should be done sparingly. Whenever the jQuery object of a DOM node is required more than once, it should therefore be cached as a variable to avoid having to call the jQuery method multiple times. 
+	Instantiating jQuery objects is expensive and should be done sparingly. Whenever the jQuery object of a DOM node is required more than once, it should be cached as a variable to avoid having to call the jQuery method multiple times. 
 
 	As per convention, any variable containing a jQuery object should be prefixed with the '$' symbol.
 	
@@ -158,7 +158,7 @@ JavaScript Best Practices
 
 	When instantiating a jQuery object on a single DOM node, use an ID as a selector rather than a class name. This will map directly to document.getElementById() and is therefore much quicker than traversing the entire document for all occurrences of a class name.
 	
-	Likewise, when instantiating a jQuery object on a group of DOM nodes, always descend from an ID using .find() if possible to narrow the set of DOM nodes.
+	Likewise, when instantiating a jQuery object on a group of DOM nodes, always descend from an ID using .find() to narrow the set of DOM nodes.
 	
 	```javascript
 	
