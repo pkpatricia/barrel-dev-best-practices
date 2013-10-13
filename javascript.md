@@ -12,8 +12,6 @@ JavaScript Best Practices
 
 	For each website or application, encapsulate all global variables and functions as properties and methods of a single object literal. This improves ease of readability and maintenance, while also protecting variable scope and preventing global namespace pollution.
 	
-	Code written in this pattern lends itself to modularity and extensibility and is therefore especially useful for large applications.
-	
 	```javascript
 	var site = {
 		myVariable: false,
