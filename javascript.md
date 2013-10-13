@@ -8,7 +8,7 @@ JavaScript Best Practices
 
 ### General
 
-*	**Encapsulate functions and variables as object methods and properties**
+*	####Encapsulate functions and variables as object methods and properties
 
 	For each website or application, encapsulate all global variables and functions as properties and methods of a single object literal. This improves ease of readability and maintenance, while also protecting variable scope and preventing global namespace pollution.
 	
@@ -23,7 +23,7 @@ JavaScript Best Practices
 	};
 	```
 	
-*	**Variable declaration**
+*	####Variable declaration
 
 	When declaring temporary variables that do not need to part of the parent object (i.e. something that is only ever referenced within a single function or method), declare all variables at the start of the function as a grouped comma-delineated list. This again improves readability and helps us to keep track of variable scope.
 	
@@ -41,7 +41,7 @@ JavaScript Best Practices
 	...
 	```
 	
-*	**Use ternary operation to declare conditional variables**
+*	####Use ternary operation to declare conditional variables
 
 	To avoid unnecessary "if ... else" statements, make use of the ternary operation to declare variables whose value depends on a condition.
 	
@@ -56,11 +56,11 @@ JavaScript Best Practices
 	var dur = speed == 'fast' ? 200 : 800;
 	```
 	
-*	**Placement of JavaScript assets in HTML documents**
+*	####Placement of JavaScript assets in HTML documents
 
-	Because the downloading of scripts blocks page rendering, the only JavaScript that should be loaded from the <head> of the document should contain time-sensitive functionality that must be evaluated before the document loads - for example image, video or font loading handlers. If possible, such functionality should be dependency-free and written in vanilla JS so that no other dependencies need to be loaded in the <head>.
+	Because the downloading of scripts blocks page rendering, the only JavaScript that should be loaded from the &lt;head&gt; of the document should contain time-sensitive functionality that must be evaluated before the document loads - for example image, video or font loading handlers. If possible, such functionality should be dependency-free and written in vanilla JS so that no other dependencies need to be loaded in the &lt;head&gt;.
 		
-	All other JavaScript including dependencies, libraries and especially anything that is not executed until the "document ready" event, should be loaded from just before the closing </body> tag of the document. Large libraries such as jQuery should generally be loaded from their own CDN if possible to distribute HTTP requests.
+	All other JavaScript including dependencies, libraries and especially anything that is not executed until the "document ready" event, should be loaded from just before the closing &lt;/body&gt; tag of the document. Large libraries such as jQuery should generally be loaded from their own CDN if possible to distribute HTTP requests.
 	
 	To reduce HTTP requests, all javascript should be concatenated into as few files as possible. While a single file is preferable, maintainability of the project may be improved by utilizing 2 or 3 semantically named files.
 	
@@ -81,7 +81,7 @@ JavaScript Best Practices
 	
 ### jQuery
 
-*	**Cache jQuery Objects**
+*	####Cache jQuery Objects
 
 	Creating jQuery objects is expensive and should be done sparingly. Whenever the jQuery object of a DOM node is required more than once, it should therefore be cached as a variable to avoid having to call the jQuery method multiple times. 
 
