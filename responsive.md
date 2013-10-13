@@ -9,7 +9,7 @@ Responsive Best Practices
 
 ### Mobile Performance
 
-*	Visual Assets
+*	**Visual Assets**
 
 	When reviewing a design, evaluate each visual element and decide if an image asset is necessary.
 	
