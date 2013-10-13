@@ -56,6 +56,29 @@ JavaScript Best Practices
 	var dur = speed == 'fast' ? 200 : 800;
 	```
 	
+*	**Placement of JavaScript assets in HTML documents**
+
+	Because the downloading of scripts blocks page rendering, the only JavaScript that should be loaded from the <head> of the document should contain time-sensitive functionality that must be evaluated before the document loads - for example image, video or font loading handlers. If possible, such functionality should be dependency-free and written in vanilla JS so that no other dependencies need to be loaded in the <head>.
+		
+	All other JavaScript including dependencies, libraries and especially anything that is not executed until the "document ready" event, should be loaded from just before the closing </body> tag of the document. Large libraries such as jQuery should generally be loaded from their own CDN if possible to distribute HTTP requests.
+	
+	To reduce HTTP requests, all javascript should be concatenated into as few files as possible. While a single file is preferable, maintainability of the project may be improved by utilizing 2 or 3 semantically named files.
+	
+	For example:
+	
+	```HTML
+	<head>
+		...
+		<script src="js/load.js"></script> <!-- if loading scripts are necessary -->
+	</head>
+	<body>
+		...
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> <!-- large libraries should be loaded from their own CDN -->
+		<script src="js/dependencies.js"></script> <!-- smaller dependencies such as plugins should be concatenated into a single file -->
+		<script src="js/main.js"></script> <!-- custom project-specific JS -->
+	</body>
+	```
+	
 ### jQuery
 
 *	**Cache jQuery Objects**
