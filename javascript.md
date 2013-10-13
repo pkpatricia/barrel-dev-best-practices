@@ -18,20 +18,19 @@ JavaScript Best Practices
 	var site = {
 		myVariable: false,
 		myMethod: function(){
-			var self = this;
+		
 		}
 	};
 	```
 	
 *	**Variable declaration**
 
-	When declaring temporary variables that do not need to part of the parent object (i.e. something that is only ever referenced within a single function or method), declare all variables at the start of the function as a grouped comma-delineated list. This again improves readability and helps us to keep track of variable scope.
+	When declaring temporary variables that do not need to part of the parent object (i.e. something that is only ever referenced within a single function or method), declare all variables at the start of the function as a grouped comma-delineated list. This again improves readability and helps when keeping track of variable scope.
 	
 	```javascript
 	...
 	getRandom: function(){
-		var self = this,
-			min = 1,
+		var min = 1,
 			max = 10,
 			rand = Math.random() * (max - min) + min,
 			output = Math.floor(rand);
@@ -113,17 +112,70 @@ JavaScript Best Practices
 
 	Using jQuery methods and objects during time-sensitive operations such as animation, loading, or AJAX requests, should be avoided if the same functionality can be easily achieved through vanilla javascript alone.
 	
-	**Some common examples**
-	
 	If you are already referencing a single DOM node using a jQuery object, the DOM node object can be retrieved as follows:
 	
 	```javascript	
-	var $hero = $('#Hero); // create a jQuery object of DOM node with ID 'Hero' 
+	var $hero = $('#Hero'); // create a jQuery object of DOM node with ID 'Hero' 
 	
 	...
 	
 	var hero = $hero[0]; // This returns the equivalent to document.getElementById('Hero');
 	
-	hero.style.display = 'none'; // We can now perform javascript operations on the object.
+	```
+	**Some common examples**
+	
+	```javascript
+	
+	//jQuery
+	
+	$element.hide();
+	
+	$element.show();
+	
+	//Vanilla JS
+	
+	$element[0].style.display = 'none';
+	
+	$element[0].style.display = 'block';
+	
+	```
+	
+	```javascript
+	
+	//jQuery
+	
+	$elements.each(function(){
+		var element = this, // DOM node
+			$element = $(this); // jQuery Object
+		
+		...
+	});
+	
+	//Vanilla JS
+	
+	for(var i = 0; i < $elements.length; i++){
+		var element = $elements[i], // DOM node
+			$element = $element.eq(i); // jQuery Object
+		
+		...
+	};
+	
+	```
+	
+	```javascript
+	
+	//jQuery
+	
+	var $newSlide = $('<div class="slide"></div>);
+	
+	$hero.append($newSlide);
+	
+	//Vanilla JS
+	
+	var newSlide = document.createElement('div');
+	
+	newSlide.className = 'slide';
+	
+	$hero[0].appendChild(newSlide);
 	
 	```
