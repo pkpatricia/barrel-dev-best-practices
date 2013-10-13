@@ -3,9 +3,10 @@
 Formatting Guidelines
 ---------------------
 
-*	Each entry should be contained as an unordered list item. The description goes here.
-	
-	**Code Example**
+
+*	**Entry Title**
+
+	Each entry should be contained as an unordered list item. The description goes here.
 	
 	``` javascript
 	
@@ -15,4 +16,11 @@ Formatting Guidelines
 	
 	```
 	
-*	Another entry.
+*	**Another Entry**
+
+
+Resources
+---------
+
+- [GitHub Markdown](https://help.github.com/articles/github-flavored-markdown)
+- [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax)
