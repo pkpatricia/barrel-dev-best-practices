@@ -7,7 +7,7 @@ Ruby on Rails Best Practices
 
 	Write your tests first, then write the code that makes the tests pass. This helps to ensure that you write the fewest lines of code needed to get the desired functionality. Plus, it will make your life easier down the road by potentially saving you hours of work when something breaks.
 	
-	*Resources*
+	**Resources**
 	
 	Rspec: https://github.com/rspec/rspec
 	How Ryan Bates uses tests: http://railscasts.com/episodes/275-how-i-test
@@ -27,7 +27,7 @@ Ruby on Rails Best Practices
 
 	In moderation, these helpers are fine, but keep in mind that they are fairly expensive and can easily be deferred to the client-side.
 	
-	*Resources*
+	**Resources**
 
 	TextHelper API: http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html
 
@@ -61,7 +61,7 @@ Ruby on Rails Best Practices
 	The gem "Delayed Job", which was extracted form the Shopify code base, makes all of this super easy. Plus, it plays nice with hosting plans like Heroku.
 
 	
-	*Resources*
+	**Resources**
 
 	Delayed Job: https://github.com/collectiveidea/delayed_job
 	Railscast: http://railscasts.com/episodes/171-delayed-job-revised
@@ -78,11 +78,11 @@ Ruby on Rails Best Practices
 
 	Turbolinks speeds up page load time by replacing the <body> and <title> tags, rather than loading a whole new page. If you're developing a straightforward, page-based app, Turbolinks is probably going to help you out. If you're developing a javascript heavy app, you may want to think about excluding it.
 
-	*Known Issues:*
+	**Known Issues:**
 
 	In earlier versions, there was an issue with Twitter Bootstrap and jQuery UI compatibility, but I believe these have all been worked out. However, if they do give you issues, there are various third-party gems that bridge the gap (notes in the Railscast on Turbolinks).
 
-	*Resources*
+	**Resources**
 
 	Turbolinks: https://github.com/rails/turbolinks/
 	Railscast: http://railscasts.com/episodes/390-turbolinks
@@ -95,7 +95,7 @@ Ruby on Rails Best Practices
 
 	Keep those controllers slim. Move any code that doesn't directly relate to the response into the model.
 	
-	*Bad:*
+	**Bad:**
 
 	controllers/tasks_controller.rb
 	``` ruby
@@ -107,7 +107,7 @@ Ruby on Rails Best Practices
 
 	```
 
-	*Good:*
+	**Good:**
 
 	models/task.rb
 	``` ruby
@@ -159,7 +159,7 @@ Ruby on Rails Best Practices
 
 	This gives you the semantic benefit of nested routes, but without the long URLs.
 
-	*Resources*
+	**Resources**
 
 	Rails Routing Guide: http://guides.rubyonrails.org/routing.html
 
