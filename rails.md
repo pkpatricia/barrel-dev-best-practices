@@ -104,7 +104,6 @@ Ruby on Rails Best Practices
 	  @complete_tasks = Task.all :conditions => {['complete == ?', true]}
 	  @incomplete_tasks = Task.all :conditions => {['complete == ?', false]}
 	end
-
 	```
 
 	**Good:**
@@ -114,7 +113,6 @@ Ruby on Rails Best Practices
 
 	scope :complete, lambda { where('complete == ?', true) }
 	scope :incomplete, lambda { where('complete == ?', false) }
-
 	```
 
 
@@ -125,7 +123,6 @@ Ruby on Rails Best Practices
 	  @complete_tasks = Task.complete.all
 	  @incomplete_tasks = Task.incomplete.all
 	end
-
 	```
 
 	The real advantage here is that we can now use the ```:complete``` and ```:incomplete``` scopes in other parts of the app. For example. If we want to see all incomplete tasks for a specific user, we could do something like:
@@ -134,7 +131,6 @@ Ruby on Rails Best Practices
 	
 	@user = User.find(:id)
 	@user_tasks = @user.tasks.incomplete
-
 	```
 
 
@@ -154,8 +150,7 @@ Ruby on Rails Best Practices
 	myapp.com/projects/12/tasks/new
 	myapp.com/tasks/193
 	myapp.com/tasks/193/comments/
-	myapp.com/comments/148
-	```
+	myapp.com/comments/148```
 
 	This gives you the semantic benefit of nested routes, but without the long URLs.
 
