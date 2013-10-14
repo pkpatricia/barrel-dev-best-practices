@@ -1,6 +1,6 @@
 #### Barrel Development Best Practices
 
-#Ruby on Rails Best Practices
+Ruby on Rails Best Practices
 ----------------------------
 
 ## Test-Driven Development
