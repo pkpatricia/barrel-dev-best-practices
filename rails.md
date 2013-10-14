@@ -72,7 +72,7 @@ Heroku Documentation: https://devcenter.heroku.com/articles/delayed-job
 ## Use Turbolinks (when it makes sense)
 As of Rails 4, Turbolinks is included in every app by default. 
 
-Turbolinks speeds up page load time by replacing the <body> and <title> tags, rather than loading a whole new page. If you're developing a straightforward, page-based app, Turbolinks is probably going to help you out. If you're developing a javascript heavy app, you may want to think about excluding it.
+Turbolinks speeds up page load time by replacing the ```<body>``` and ```<title>``` tags, rather than loading a whole new page. If you're developing a straightforward, page-based app, Turbolinks is probably going to help you out. If you're developing a javascript heavy app, you may want to think about excluding it.
 
 **Known Issues:**
 
@@ -92,8 +92,7 @@ Keep those controllers slim. Move any code that doesn't directly relate to the r
 
 **Bad:**
 
-controllers/tasks_controller.rb
-``` ruby
+controllers/tasks_controller.rb``` ruby
 
 def index
   @complete_tasks = Task.all :conditions => {['complete == ?', true]}
@@ -103,16 +102,14 @@ end
 
 **Good:**
 
-models/task.rb
-``` ruby
+models/task.rb``` ruby
 
 scope :complete, lambda { where('complete == ?', true) }
 scope :incomplete, lambda { where('complete == ?', false) }
 ```
 
 
-controllers/tasks_controller.rb
-``` ruby
+controllers/tasks_controller.rb``` ruby
 
 def index
   @complete_tasks = Task.complete.all
