@@ -1,7 +1,6 @@
 #### Barrel Development Best Practices
 
-Ruby on Rails Best Practices
-----------------------------
+#Ruby on Rails Best Practices
 
 ## Test-Driven Development
 Write your tests first, then write the code that makes the tests pass. This helps to ensure that you write the fewest lines of code needed to get the desired functionality. Plus, it will make your life easier down the road by potentially saving you hours of work when something breaks.
