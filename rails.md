@@ -138,7 +138,9 @@ Ruby on Rails Best Practices
 
 	Developers are often tempted to nest all of their resources like so:
 
-	```myapp.com/projects/12/tasks/193/comments/148```
+	```
+	myapp.com/projects/12/tasks/193/comments/148
+	```
 
 	Try to avoid nesting more than 2 levels deep, as it will gum up your link helpers in Rails, and create unnecessarily long URLs. 
 
@@ -150,7 +152,8 @@ Ruby on Rails Best Practices
 	myapp.com/projects/12/tasks/new
 	myapp.com/tasks/193
 	myapp.com/tasks/193/comments/
-	myapp.com/comments/148```
+	myapp.com/comments/148
+	```
 
 	This gives you the semantic benefit of nested routes, but without the long URLs.
 
