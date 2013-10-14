@@ -92,8 +92,8 @@ Keep those controllers slim. Move any code that doesn't directly relate to the r
 
 **Bad:**
 
-controllers/tasks_controller.rb``` ruby
-
+controllers/tasks_controller.rb
+``` ruby
 def index
   @complete_tasks = Task.all :conditions => {['complete == ?', true]}
   @incomplete_tasks = Task.all :conditions => {['complete == ?', false]}
@@ -102,15 +102,14 @@ end
 
 **Good:**
 
-models/task.rb``` ruby
-
+models/task.rb
+``` ruby
 scope :complete, lambda { where('complete == ?', true) }
 scope :incomplete, lambda { where('complete == ?', false) }
 ```
 
-
-controllers/tasks_controller.rb``` ruby
-
+controllers/tasks_controller.rb
+``` ruby
 def index
   @complete_tasks = Task.complete.all
   @incomplete_tasks = Task.incomplete.all
