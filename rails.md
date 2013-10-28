@@ -154,3 +154,79 @@ Rails Routing Guide: http://guides.rubyonrails.org/routing.html
 
 
 
+
+
+
+
+## Be careful with .dup, .clone, and .freeze
+Ruby includes a few basic object methods, some of which are fairly nuanced.
+
+
+**.freeze**
+
+.freeze lets you "lock" an object to prevent future changes (like they're your children that you don't want to grow up):
+
+```
+class Person
+  attr_accessor :grown_up
+end
+
+jon = Person.new
+jon.grown_up = false
+jon.freeze
+
+jon.grown_up = true	# RuntimeError, jon is a frozen object
+```
+
+Arrays are a bit trickier. When you freeze an array, the array object is frozen, but not the objects that make up the array:
+```
+numbers = ["one", "two", "three"]
+numbers.freeze
+
+numbers[2] = "four" 	# RuntimeError, you can't modify what objects make up the array
+
+numbers[2].replace("four")		# allowed, you aren't changing the array, just a specific object
+numbers   # ["one", "four", "three"]
+```
+
+
+**.dup vs .clone**
+
+Both methods make a copy of the receiving object, but there are some slight differences:
+
+```.dup``` does not copy singleton methods, ```.clone``` does
+
+```
+this = Object.new
+def this.size
+  99
+end
+
+this.dup.size   	# NoMethodError
+this.clone.size 	# 99
+```
+
+
+The "Frozen" state is not preserved via ```.dup```, but is with ```.clone```
+
+```
+class Person
+  attr_accessor :name
+end
+jon = Person.new
+jon.name = "Jon"
+jon.freeze
+
+jon.dup.name = "Greg"   # Allows the change
+jon.clone.name = "Greg" # RuntimeError
+```
+
+
+
+
+
+
+
+
+
+
