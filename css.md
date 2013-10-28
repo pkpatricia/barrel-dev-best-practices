@@ -2,6 +2,9 @@
 
 CSS Best Practices
 ------------------
+- [General](#general)
+- [Animation](#animation)
+- [Preprocessing](#preprocessing)
 
 ### General
 
@@ -34,7 +37,7 @@ CSS Best Practices
   }
   ```
 
-### Transitions & Animations
+### Animation
 * Use transitions for simple changes from one style to another. Use keyframe animations for more complex scripted actions.
 * For best performance, animate CSS transform properties instead of position, margin, height/width, etc. whenever possible.
 
