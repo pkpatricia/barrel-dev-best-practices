@@ -164,7 +164,7 @@ Ruby includes a few basic object methods, some of which are fairly nuanced.
 
 **.freeze**
 
-.freeze lets you "lock" an object to prevent future changes (like they're your children that you don't want to grow up):
+```.freeze``` lets you "lock" an object to prevent future changes (like they're your children that you don't want to grow up):
 
 ```
 class Person
