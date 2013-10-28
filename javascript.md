@@ -55,7 +55,7 @@ JavaScript Best Practices
 	
 *	**Placement of JavaScript assets in HTML documents**
 
-	Because the downloading of scripts blocks page rendering, the only JavaScript that should be loaded from the &lt;head&gt; of the document should contain time-sensitive functionality that must be evaluated before the document loads - for example image, video or font loading handlers. If possible, such functionality should be dependency-free and written in vanilla JS so that no other dependencies need to be loaded in the &lt;head&gt;.
+	Because the downloading of scripts blocks page rendering, the only JavaScript that should be loaded from the &lt;head&gt; of the document should contain time-sensitive functionality that must be evaluated before the document loads - for example image, video or font loading handlers, and feature detection. If possible, such functionality should be dependency-free and written in vanilla JS so that no other dependencies need to be loaded in the &lt;head&gt;.
 		
 	All other JavaScript including dependencies, libraries and especially anything that is not executed until the "document ready" event, should be loaded from just before the closing &lt;/body&gt; tag of the document. Large libraries such as jQuery should generally be loaded from their own CDN if possible to distribute HTTP requests.
 	
