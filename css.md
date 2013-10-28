@@ -10,7 +10,7 @@ CSS Best Practices
     ```html
     <section id="IntroSection" class="bg-blue section-fixed"></section>
     ```
-* Use classes to change appearance whenever possible. Only set styles in JavaScript if the values need to be dynamic.
+* Use classes defined in CSS to change appearance whenever possible. Only set styles in JavaScript if the values need to be dynamic.
 * Avoid unnecessary use of `*` and other expensive CSS selectors.
 * Instead of relying on `!important`, use CSS specificity to override styles when necessary.
 
