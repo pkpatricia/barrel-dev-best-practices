@@ -242,3 +242,30 @@ JavaScript Best Practices
 	$hero[0].appendChild(newSlide);
 	
 	```
+	
+	```javascript
+	
+	//jQuery
+	
+	var $link = $('#MyLink'),
+		href = $link.attr('href');
+	
+	var $input = $('#MyInput'),
+		value = $input.val();
+		
+	var $element = $('#MyElement'),
+		customData = $element.attr('data-custom') // or .data('custom')
+	
+	
+	//Vanilla JS
+	
+	var link = document.getElementById('MyLink'),
+		href = link.href;
+	
+	var input = document.getElementById('MyInput'),
+		value = input.value;
+		
+	var element = document.getElementById('MyElement'),
+		customData = element.dataset.custom;
+		
+	```
