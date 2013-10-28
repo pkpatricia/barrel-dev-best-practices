@@ -40,7 +40,7 @@ JavaScript Best Practices
 	
 *	**Use ternary operation to declare conditional variables**
 
-	To avoid unnecessary "if ... else" statements, make use of the ternary operation to declare variables whose value depends on a condition.
+	To avoid unnecessary "if ... else" statements, make use of the ternary operation to declare variables whose value depends on a condition. The condition should be wrapped in parenthes.
 	
 	```javascript
 	// The following statement:
@@ -50,7 +50,7 @@ JavaScript Best Practices
 		var dur = 800;
 	};
 	// Can be re-written as:
-	var dur = speed == 'fast' ? 200 : 800;
+	var dur = (speed == 'fast') ? 200 : 800;
 	```
 	
 *	**Placement of JavaScript assets in HTML documents**
