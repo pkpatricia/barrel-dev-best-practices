@@ -1,7 +1,18 @@
 #### Barrel Development Best Practices
 
-#Ruby / RoR Best Practices
+# Ruby / RoR Best Practices
 ----------------------------
+- [Test-Driven Development](#test-driven-development)
+- [Text Helpers](#avoid-expensive-text-helpers)
+- [Delayed Job](#defer-non-critical-expensive-jobs)
+- [Turbolinks](#use-turbolinks---when-it-makes-sense)
+- [Fat Models, Skinny controllers, and Scopes](#fat-models-skinny-controllers-and-scopes)
+- [Shallow Nesting](#shallow-nesting)
+- [Dup, Clone, and Freeze](#be-careful-with-dup-clone-and-freeze)
+
+
+
+
 
 ## Test-Driven Development
 
@@ -224,6 +235,11 @@ The real advantage here is that we can now use the ```:complete``` and ```:incom
 @user = User.find(:id)
 @user_tasks = @user.tasks.incomplete
 ```
+
+
+
+
+
 
 
 ## Shallow Nesting
