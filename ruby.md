@@ -380,6 +380,7 @@ The "Frozen" state is not preserved via ```.dup```, but is with ```.clone```
 class Person
   attr_accessor :name
 end
+
 jon = Person.new
 jon.name = "Jon"
 jon.freeze
