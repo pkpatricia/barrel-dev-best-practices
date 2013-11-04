@@ -4,12 +4,100 @@
 ----------------------------
 
 ## Test-Driven Development
-Write your tests first, then write the code that makes the tests pass. This helps to ensure that you write the fewest lines of code needed to get the desired functionality. Plus, it will make your life easier down the road by potentially saving you hours of work when something breaks.
 
-**Resources**
+Do it.
 
-Rspec: https://github.com/rspec/rspec  
-How Ryan Bates uses tests: http://railscasts.com/episodes/275-how-i-test
+##### What is TDD?
+With TDD, you write your specs(tests) first, then write the actual code that makes the specs pass. This helps you make sure that you're writting the fewest lines of code necessary to get the desired functionality.
+
+Writing good specs also gives you a nice dev guide that breaks the app up into small, managable chunks - it forces you to focus.
+
+##### Naming Specs
+
+Don't write tests that start with "should". This gets very repetative and your descriptions will begin to run together. Make you test names active and use the present tense.
+
+Bad:
+```
+describe User do
+	it "should require a valid email" do
+		...
+	end
+end
+```
+
+Good:
+```
+describe User do
+	it "requires a valid email" do
+		...
+	end
+end
+```
+
+##### FactoryGirl
+
+FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code by letting you do cool stuff like:
+
+spec/factories/user_factories.rb
+```
+require 'factory_girl'
+
+FactoryGirl.define do
+
+  factory :user do
+    name 'Jason Bourne'
+    email 'jason.bourne@cia.gov'
+    password 'TerroristsSuck!'
+  end
+
+end
+```
+
+Which can be used in your tests to build a new User object:
+
+spec/models/user_spec.rb
+```
+describe User do
+  it "requires a valid email" do
+    user = FactoryGirl.build(:user)
+    ...
+  end
+end
+```
+
+
+Be careful, though. Factories can be expensive, and when you have 200+ tests running, it can really slow you down. To help alleviate this, use standard Ruby techniques when a factory isn't completely necessary.
+
+Good:
+```
+describe User do
+  it "requires a valid email" do
+    user = FactoryGirl.build(:user)
+    ...
+  end
+end
+```
+
+Maybe Better, if you don't need all of the user's attributes:
+```
+describe User do
+  it "requires a valid email" do
+    user = User.new(email: "jason.bourne@cia.gov")
+    ...
+  end
+end
+```
+
+
+##### Resources
+[FactoryGirl](https://github.com/thoughtbot/factory_girl)  
+[Rspec](https://github.com/rspec/rspec)  
+[How did you learn Rails testing (preferably RSpec)? (SO)](http://stackoverflow.com/questions/9934351/how-did-you-learn-rails-testing-preferably-rspec)
+
+
+
+
+
 
 
 
@@ -17,26 +105,28 @@ How Ryan Bates uses tests: http://railscasts.com/episodes/275-how-i-test
 ## Avoid expensive text helpers
 Rails come with a ton of awesome helper methods for modifying text. 
 
-**A few common ones:**
+##### A few common ones:
 
 - ```time_ago_in_words``` – converts a timestamp to a string like "about 10 minutes ago" or "2 years ago"
 - ```truncate``` – shortens a string
-- ```pluralize``` – uses Rails' language engine to conditionally pluralize a word
+- ```pluralize``` – uses Active Support's fancy language smarts to conditionally pluralize a word
 
-In moderation, these helpers are fine, but keep in mind that they are fairly expensive and can easily be deferred to the client-side.
+In moderation, these helpers are fine; but keep in mind that they are fairly expensive and many can easily be deferred to the client-side.
 
-**Resources**
+##### Resources
+[TextHelper API](http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html)
 
-TextHelper API: http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html
+
+
 
 
 
 
 
 ## Defer non-critical, expensive jobs
-If a request includes a labor-intensive job (such as sending an email to a user), that is not critical to the response you are sending to the user, then that job should be deferred to a queue. 
+If a request includes a labor-intensive job (the classic example is when sending an email to a user), that is not critical to the response you are sending to the user, then that job should be deferred to a queue. 
 
-**The default process:**
+##### The default process:
 
 1. User send request – *client side is now blocked*
 2. Server receives request – *server is now blocked*
@@ -44,7 +134,7 @@ If a request includes a labor-intensive job (such as sending an email to a user)
 4. Server completes the expensive function – *server is now unblocked*
 5. Server sends response to client – *client side is now unblocked*
 
-**With a job queue:**
+##### With a job queue:
 
 1. User send request – *client side is now blocked*
 2. Server receives request – *server is now blocked*
@@ -58,30 +148,37 @@ Obviously, if you need to include the result of the expensive job in your respon
 The gem "Delayed Job", which was extracted form the Shopify code base, makes all of this super easy. Plus, it plays nice with hosting plans like Heroku.
 
 
-**Resources**
-
-Delayed Job: https://github.com/collectiveidea/delayed_job  
-Railscast: http://railscasts.com/episodes/171-delayed-job-revised  
-Heroku Documentation: https://devcenter.heroku.com/articles/delayed-job
-
+##### Resources
+[Delayed Job](https://github.com/collectiveidea/delayed_job)  
+[Railscast on Delayed Job](http://railscasts.com/episodes/171-delayed-job-revised)  
+[Heroku Documentation](https://devcenter.heroku.com/articles/delayed-job)
 
 
 
 
 
-## Use Turbolinks (when it makes sense)
+
+
+
+
+## Use Turbolinks - when it makes sense
 As of Rails 4, Turbolinks is included in every app by default. 
 
 Turbolinks speeds up page load time by replacing the ```<body>``` and ```<title>``` tags, rather than loading a whole new page. If you're developing a straightforward, page-based app, Turbolinks is probably going to help you out. If you're developing a javascript heavy app, you may want to think about excluding it.
 
-**Known Issues:**
+##### Known Issues:
 
 In earlier versions, there was an issue with Twitter Bootstrap and jQuery UI compatibility, but I believe these have all been worked out. However, if they do give you issues, there are various third-party gems that bridge the gap (notes in the Railscast on Turbolinks).
 
-**Resources**
+##### Resources
+[Turbolinks](https://github.com/rails/turbolinks/)  
+[Railscast on Turbolinks](http://railscasts.com/episodes/390-turbolinks)
 
-Turbolinks: https://github.com/rails/turbolinks/  
-Railscast: http://railscasts.com/episodes/390-turbolinks
+
+
+
+
+
 
 
 
@@ -90,7 +187,7 @@ Railscast: http://railscasts.com/episodes/390-turbolinks
 ## Fat Models, Skinny controllers, and Scopes
 Keep those controllers slim. Move any code that doesn't directly relate to the response into the model.
 
-**Bad:**
+##### Bad:
 
 controllers/tasks_controller.rb
 ``` ruby
@@ -100,7 +197,7 @@ def index
 end
 ```
 
-**Good:**
+##### Good:
 
 models/task.rb
 ``` ruby
@@ -147,9 +244,10 @@ myapp.com/comments/148
 
 This gives you the semantic benefit of nested routes, but without the long URLs.
 
-**Resources**
+##### Resources
+[Rails Routing Guide](http://guides.rubyonrails.org/routing.html)
 
-Rails Routing Guide: http://guides.rubyonrails.org/routing.html
+
 
 
 
@@ -162,7 +260,7 @@ Rails Routing Guide: http://guides.rubyonrails.org/routing.html
 Ruby includes a few basic object methods, some of which are fairly nuanced.
 
 
-**.freeze**
+##### .freeze
 
 ```.freeze``` lets you "lock" an object to prevent future changes (like they're your children that you don't want to grow up):
 
@@ -190,7 +288,7 @@ numbers   # ["one", "four", "three"]
 ```
 
 
-**.dup vs .clone**
+##### .dup vs .clone
 
 Both methods make a copy of the receiving object, but there are some slight differences:
 
