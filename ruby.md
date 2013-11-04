@@ -38,8 +38,8 @@ end
 
 FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code by letting you do cool stuff like:
 
-spec/factories/user_factories.rb
 ``` ruby
+# spec/factories/user_factories.rb
 require 'factory_girl'
 
 FactoryGirl.define do
@@ -55,8 +55,9 @@ end
 
 Which can be used in your tests to build a new User object:
 
-spec/models/user_spec.rb
 ``` ruby
+# spec/models/user_spec.rb
+
 describe User do
   it "requires a valid email" do
     user = FactoryGirl.build(:user)
@@ -189,8 +190,9 @@ Keep those controllers slim. Move any code that doesn't directly relate to the r
 
 ##### Bad:
 
-controllers/tasks_controller.rb
 ``` ruby
+# controllers/tasks_controller.rb
+
 def index
   @complete_tasks = Task.all :conditions => {['complete == ?', true]}
   @incomplete_tasks = Task.all :conditions => {['complete == ?', false]}
@@ -199,14 +201,16 @@ end
 
 ##### Good:
 
-models/task.rb
 ``` ruby
+# models/task.rb
+
 scope :complete, lambda { where('complete == ?', true) }
 scope :incomplete, lambda { where('complete == ?', false) }
 ```
 
-controllers/tasks_controller.rb
 ``` ruby
+# controllers/tasks_controller.rb
+
 def index
   @complete_tasks = Task.complete.all
   @incomplete_tasks = Task.incomplete.all
