@@ -9,7 +9,7 @@ Barrel Development Best Practices
 - [HTML](html.md)
 - [Javascript](javascript.md)
 - [PHP](php.md)
-- [Ruby on Rails](rails.md)
+- [Ruby / RoR](ruby.md)
 - [Responsive](responsive.md)
 - [Shopify](shopify.md)
 - [WordPress](wordpress.md)
