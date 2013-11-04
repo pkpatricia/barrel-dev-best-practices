@@ -17,7 +17,7 @@ Writing good specs also gives you a nice dev guide that breaks the app up into s
 Don't write tests that start with "should". This gets very repetative and your descriptions will begin to run together. Make you test names active and use the present tense.
 
 Bad:
-```
+``` ruby
 describe User do
 	it "should require a valid email" do
 		...
@@ -26,7 +26,7 @@ end
 ```
 
 Good:
-```
+``` ruby
 describe User do
 	it "requires a valid email" do
 		...
@@ -39,7 +39,7 @@ end
 FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code by letting you do cool stuff like:
 
 spec/factories/user_factories.rb
-```
+``` ruby
 require 'factory_girl'
 
 FactoryGirl.define do
@@ -56,7 +56,7 @@ end
 Which can be used in your tests to build a new User object:
 
 spec/models/user_spec.rb
-```
+``` ruby
 describe User do
   it "requires a valid email" do
     user = FactoryGirl.build(:user)
@@ -69,7 +69,7 @@ end
 Be careful, though. Factories can be expensive, and when you have 200+ tests running, it can really slow you down. To help alleviate this, use standard Ruby techniques when a factory isn't completely necessary.
 
 Good:
-```
+``` ruby
 describe User do
   it "requires a valid email" do
     user = FactoryGirl.build(:user)
@@ -79,7 +79,7 @@ end
 ```
 
 Maybe Better, if you don't need all of the user's attributes:
-```
+``` ruby
 describe User do
   it "requires a valid email" do
     user = User.new(email: "jason.bourne@cia.gov")
@@ -264,7 +264,7 @@ Ruby includes a few basic object methods, some of which are fairly nuanced.
 
 ```.freeze``` lets you "lock" an object to prevent future changes (like they're your children that you don't want to grow up):
 
-```
+``` ruby
 class Person
   attr_accessor :grown_up
 end
@@ -277,7 +277,7 @@ jon.grown_up = true	# RuntimeError, jon is a frozen object
 ```
 
 Arrays are a bit trickier. When you freeze an array, the array object is frozen, but not the objects that make up the array:
-```
+``` ruby
 numbers = ["one", "two", "three"]
 numbers.freeze
 
@@ -294,7 +294,7 @@ Both methods make a copy of the receiving object, but there are some slight diff
 
 ```.dup``` does not copy singleton methods, ```.clone``` does
 
-```
+``` ruby
 this = Object.new
 def this.size
   99
@@ -307,7 +307,7 @@ this.clone.size 	# 99
 
 The "Frozen" state is not preserved via ```.dup```, but is with ```.clone```
 
-```
+``` ruby
 class Person
   attr_accessor :name
 end
