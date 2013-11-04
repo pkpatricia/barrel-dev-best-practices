@@ -23,6 +23,11 @@ With TDD, you write your specs(tests) first, then write the actual code that mak
 
 Writing good specs also gives you a nice dev guide that breaks the app up into small, managable chunks - it forces you to focus.
 
+##### RSpec
+
+Although Rails ships with a test suite, it's a good idea to rip that sucker out and replace it with RSpec - it has a more human-like syntax and a few extra cool features, which are very helpful when running large numbers of tests.
+
+
 ##### Naming Specs
 
 Don't write tests that start with "should". This gets very repetative and your descriptions will begin to run together. Make you test names active and use the present tense.
@@ -100,6 +105,50 @@ describe User do
 end
 ```
 
+
+##### Use Contexts to Group Specs
+
+RSpec has two high-level block types: describe blocks and context blocks. The two are literally the same, functionally, but have an important contextual difference. **Describe blocks** are used to group specs that test similar pieces of functionality. **Context blocks** are generally used inside of describe blocks to group specs that test functionality when a particular set of conditions are the same.
+
+For example, here we wrap all of our specs in a describe block because they are all testing the User model. We have two separate contexts, though. One for when the user is male and one for female.
+
+``` ruby
+describe User do
+
+  before(:each) do
+    @user = FactoryGirl.build(:user)
+  end
+
+  context "male" do
+    before(:each) do
+      @user.sex = "male"
+    end
+
+    it "sometimes wears dirty socks" do
+      ...
+    end
+
+    it "leaves the toilet seat up" do
+      ...
+    end
+  end
+
+  context "female" do
+    before(:each) do
+      @user.sex = "female"
+    end
+
+    it "really likes chocolate" do
+      ...
+    end
+
+    it "is the boss" do
+      ...
+    end
+  end
+
+end
+```
 
 ##### Resources
 [FactoryGirl](https://github.com/thoughtbot/factory_girl)  
