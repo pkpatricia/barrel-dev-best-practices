@@ -8,6 +8,7 @@
 - [Turbolinks](#use-turbolinks---when-it-makes-sense)
 - [Fat Models, Skinny controllers, and Scopes](#fat-models-skinny-controllers-and-scopes)
 - [Shallow Nesting](#shallow-nesting)
+- [And/Or Keywords](#dont-use-the-and--or-keywords)
 - [Dup, Clone, and Freeze](#be-careful-with-dup-clone-and-freeze)
 
 
@@ -320,6 +321,8 @@ This gives you the semantic benefit of nested routes, but without the long URLs.
 
 
 
+## Don't use the and / or keywords
+Avoid the keywords ```and``` and ```or```, as they behave slightly differently than ```&&``` and ```||```, and it's not worth the added confusion.
 
 
 
