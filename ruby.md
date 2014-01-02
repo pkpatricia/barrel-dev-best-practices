@@ -2,7 +2,7 @@
 
 # Ruby / RoR Best Practices
 ----------------------------
-- [Method Suffixes](#method-suffixes)
+- [Method Suffixes](#method-suffixes--and-)
 - [Defer non-critical, expensive jobs](#defer-non-critical-expensive-jobs)
 - [Turbolinks](#use-turbolinks---when-it-makes-sense)
 - [Fat Models, Skinny controllers, and Scopes](#fat-models-skinny-controllers-and-scopes)
