@@ -5,6 +5,8 @@
 ----------------------------
 - [Commit Frequency](#commit-frequency)
 - [Working with Others](#working-with-others)
+- [Working on an Existing App](#working-on-an-existing-app)
+
 
 
 
@@ -34,11 +36,11 @@ When working with other devs, you should never work directly on the Master branc
 
 Once an app is live, it's a good idea to add a "staging" branch to your repo, and change your workflow to something like:
 
-1) Create a feature branch, add code.
-2) Merge your feature into "Staging"
-3) Push the Staging code to the staging server for testing.
-4) Confirm that everything works.
-5) Merge your feature into "Master".
-6) Push Master code to the production server and delete feature branch.
+1) Create a feature branch, add code.  
+2) Merge your feature into "Staging"  
+3) Push the Staging code to the staging server for testing.  
+4) Confirm that everything works.  
+5) Merge your feature into "Master".  
+6) Push Master code to the production server and delete feature branch.  
 
 This way, if you are in the middle of testing a feature and something more important comes up (a bug on production), you can fix the issue without having to remove your feature code from Master (because only production-ready code is ever merged to Master).
