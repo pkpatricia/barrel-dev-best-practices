@@ -46,7 +46,7 @@ In Gruntfile.js:
     uglify: {
       options: {
         sourceMap: 'dist/scripts/main.js.min.map',
-        sourceMappingURL: 'main.js.min'
+        sourceMappingURL: 'main.js.min.map'
       }
     }
 
