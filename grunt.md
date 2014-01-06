@@ -13,7 +13,7 @@ You can set up your project by running `npm init` or manually creating a [packag
 ## Packages
 
 ### [grunt-usemin](https://github.com/yeoman/grunt-usemin) & [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
-Uglify concatenates and minifies JavaScript files, and grunt-usemin can be used to configure this process using special comments when you insert the scripts in your HTML. There are two separate tasks in Grunt: useminPrepare, for scanning your HTML files and passing the configuration to Uglify; and usemin, for replacing the references to the source files with the minified paths.
+Uglify concatenates and minifies JavaScript files. If you're developing a static site, you can use grunt-usemin to configure this process using special comments when you insert the scripts in your HTML. There are two separate tasks in Grunt: useminPrepare, for scanning your HTML files and passing the configuration to Uglify; and usemin, for replacing the references to the source files with the minified paths. For some projects (such as Wordpress sites) you may need to define the JS source files directly in your Gruntfile.
 
 In HTML:
 
