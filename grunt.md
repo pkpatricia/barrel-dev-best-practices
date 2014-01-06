@@ -42,6 +42,12 @@ In Gruntfile.js:
       options: {
         assetDirs: ['dist/assets']
       }
+    },
+    uglify: {
+      options: {
+        sourceMap: 'dist/scripts/<%= pkg.name %>.min.js.map',
+        sourceMappingURL: '<%= pkg.name %>.min.js.map'
+      }
     }
 
 ### [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less)
