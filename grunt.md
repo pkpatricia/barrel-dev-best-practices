@@ -17,6 +17,7 @@ You can set up your project by running `npm init` or manually creating a [packag
 Uglify concatenates and minifies JavaScript files, and grunt-usemin can be used to easily configure this process using special comments when you insert the scripts in your HTML. There are two separate tasks in Grunt: useminPrepare, for scanning your HTML files and passing the configuration to Uglify; and usemin, for replacing the references to the source files with the minified paths.
 
 In HTML:
+
     <!-- build:js dist/scripts/main.min.js -->
     <script src="src/scripts/lib/underscore.js"></script>
     <script src="src/scripts/lib/backbone.js"></script>
@@ -25,6 +26,7 @@ In HTML:
     <!-- endbuild -->
 
 In Gruntfile.js:
+
     useminPrepare: {
       html: 'src/index.html',
       options: {
@@ -35,7 +37,6 @@ In Gruntfile.js:
         dest: 'dist'
       }
     },
-
     usemin: {
       html: 'dist/**/*.html',
       options: {
@@ -45,6 +46,7 @@ In Gruntfile.js:
 
 ### [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less)
 Task for compiling LESS files into CSS. Can also include Source Maps for easier inspection.
+
     less: {
       dev: {
         options: {
@@ -71,12 +73,14 @@ This task will continuously monitor a directory for changes, and run Grunt tasks
 Connect is a static web server for Node.js. When using with Grunt, you can mount one or more folders from your project as its own site on your development machine. You can also enable middleware such as connect-livereload to automatically insert scripts or otherwise process your files before being served.
 
 In Gruntfile.js (outside config):
+
     var liveReload = require('connect-livereload');
     var mountFolder = function(connect, dir) {
       return connect.static(require('path').resolve(dir));
     };
 
 In Gruntfile.js (config):
+
     connect: {
       options: {
         port: 9000,
