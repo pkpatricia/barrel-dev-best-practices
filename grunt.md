@@ -1,6 +1,5 @@
 # Grunt & Optimization
 
-## What
 Grunt is a tool for automating development tasks. You run it from the command line in terminal, using the Node.js engine and the Node Package Manager. It can be configured in a variety of ways to suit different types of projects. This document includes some recommended Grunt packages and sample configuration for common tasks.
 
 - [Example Gruntfile](http://gruntjs.com/getting-started#an-example-gruntfile)
