@@ -44,3 +44,19 @@ Once an app is live, it's a good idea to add a "staging" branch to your repo, an
 6) Push Master code to the production server and delete feature branch.  
 
 This way, if you are in the middle of testing a feature and something more important comes up (a bug on production), you can fix the issue without having to remove your feature code from Master (because only production-ready code is ever merged to Master).
+
+
+## Issues
+
+Github Issues are a great way to keep track of bugs and feature requests. Issues can also be linked to Commits and Pull Requests, which leaves a nice paper trail for anybody trying to track progress on the project.
+
+To link an issue, simply use the special [issue syntax](https://help.github.com/articles/closing-issues-via-commit-messages) within a commit message. When your commit is merged into the Master branch, a reference to your commit will be added and the issue will automatically be closed.
+
+For Example, given the issue: `#21 - Usernames should link to the user's profile`, you could add the folliwing commit:
+
+```
+git add .
+git commit -m "fixes #21, usernames now link to user's profile"
+```
+
+Once merged into Master, the keyword _"fixes #21"_ lets Github know to close issue #21 and add a reference to this commit.
