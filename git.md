@@ -6,6 +6,7 @@
 - [Commit Frequency](#commit-frequency)
 - [Working with Others](#working-with-others)
 - [Working on an Existing App](#working-on-an-existing-app)
+- [Github Issues](#issues)
 
 
 
@@ -50,9 +51,9 @@ This way, if you are in the middle of testing a feature and something more impor
 
 Github Issues are a great way to keep track of bugs and feature requests. Issues can also be linked to Commits and Pull Requests, which leaves a nice paper trail for anybody trying to track progress on the project.
 
-To link an issue, simply use the special [issue syntax](https://help.github.com/articles/closing-issues-via-commit-messages) within a commit message. When your commit is merged into the Master branch, a reference to your commit will be added and the issue will automatically be closed.
+To link an issue, simply use the special [issue syntax](https://help.github.com/articles/closing-issues-via-commit-messages) within a commit message. When your commit is merged into the Master branch, the issue will close automatically.
 
-For Example, given the issue: `#21 - Usernames should link to the user's profile`, you could add the folliwing commit:
+For Example, given the issue `#21 - Usernames should link to the user's profile`, you could add the folliwing commit:
 
 ```
 git add .
