@@ -3,6 +3,94 @@
 PHP Best Practices
 ------------------
 
+_Because each PHP framework approaches code quality in a different way, it is important to respect the best practices and style guidelines for each framework on a case-by-case basis. The formats listed below highlight long-standing practices for PHP and should be used as a general guideline._
+
+### Style
+
+#### Boolean
+
+PHP booleans, `TRUE`, `FALSE`, `NULL`, should traditionally be written in uppercase for readability.
+
+#### Control structures
+
+Conditional control structures `if`, `while`, `for`, `foreach`, and `switch` should have white space following the structure and the condition for readability.
+
+Wrong:
+```
+  if($foo == $bar){
+    foreach($foo as $f){
+      return $f;
+    }
+  }
+```
+Right:
+```
+  if ($foo == $bar) {
+    foreach ($foo as $f) {
+      return $f;
+    }
+  }
+```
+
+#### Methods
+
+Method names should be descriptive of their actions and all lowercase, with underscores separating words. Method parameters should be comma separated with white space to improve readability.
+
+Wrong:
+```
+function echoRoll($str,$int,$bool)
+{
+  echo 'Fox, do a barrel roll!';
+}
+```
+Right:
+```
+function tell_fox_to_roll($str, $int, $bool)
+{
+  echo 'Fox, do a barrel roll!';
+}
+```
+
+#### Private and protected class variables
+
+It is helpful to prefix an underscore `_` to private or protected varaible names so that non-encapsulated variables can be easily identified. For instance:
+
+```
+Class Foo
+{
+  protected $_foo;    // Available to Foo and extensions of Foo
+  private $_bar;      // Only available to Foo
+  public $pub;        // Available to everyone
+  
+  // Construct
+  function __construct($str, $int, $bool)
+  {
+    $this->_foo = $str;
+    $this->_bar = $int;
+    $this->pub = $bool;
+  }
+  
+  // Encapsulates $_bar
+  protected function return_bar(){
+    return $this->_bar;
+  }
+}
+
+Class Bar extends Foo
+{
+  // Construct
+  function __construct($str, $int, $bool){
+    parent::__construct($str, $int, $bool); // Constructs Foo
+  
+    $bar = $this->return_bar(); // Retrieves $_bar
+    $this->_foo = $bar; // Changes $_foo to $bar
+  }
+}
+
+$foobar = new Bar('hello world', 5, TRUE);
+$foobar->pub = FALSE; // Changes $_pub to FALSE
+```
+
 ### Syntax
 
 #### Short open tags
@@ -24,13 +112,13 @@ Files that are pure PHP should have `<?php` on line one and should not have any 
 When templating with PHP, it is best practice to use alternate syntax for the `if`, `while`, `for`, `foreach`, and `switch` control structures. Generic `}` closing tags are non-descriptive, and use of alternate syntax helps clarify the end of events. For example:
 ```
 <section id="Blog">
-  <?php if ($articles){ ?>
+  <?php if ($articles) { ?>
     <?php foreach ($articles as $article){ ?>
       <h3><?= $article['title']; ?></h3>
       <?= $article['content']; ?>
     <?php } ?>
     
-    <?php if (!is_home()){ ?>
+    <?php if (!is_home()) { ?>
       <p><a href="#home" title="Home">Go home</a></p>
     <?php } ?>
   <?php } ?>
@@ -39,23 +127,18 @@ When templating with PHP, it is best practice to use alternate syntax for the `i
 Is better written as:
 ```
 <section id="Blog">
-  <?php if ($articles): ?>
+  <?php if ($articles) : ?>
     <?php foreach ($articles as $article): ?>
       <h3><?= $article['title']; ?></h3>
       <?= $article['content']; ?>
     <?php endforeach; ?>
     
-    <?php if (!is_home()): ?>
+    <?php if (!is_home()) : ?>
       <p><a href="#home" title="Home">Go home</a></p>
     <?php endif; ?>
   <?php endif; ?>
 </section>
 ```
-
-
-
-
-
 
 
 
