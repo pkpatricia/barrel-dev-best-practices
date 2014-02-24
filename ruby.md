@@ -10,6 +10,7 @@
 - [And/Or Keywords](#dont-use-the-and--or-keywords)
 - [Test-Driven Development](#test-driven-development)
 - [Dup, Clone, and Freeze](#be-careful-with-dup-clone-and-freeze)
+- [The try() Method](#the-try-method)
 
 
 
@@ -424,6 +425,23 @@ jon.clone.name = "Greg" # RuntimeError
 
 
 
+
+
+## The try() Method
+Super handy, easy to forget about.
+
+The `try()` method (Rails only) attempts to call a given method on an object and rescues if it encounters a nil response. That means that this:
+
+```erb
+<% if @user.hometown %>
+  <%= @user.hometown.name %> 
+<% end %>
+```
+  
+...can become this:
+```erb
+<%= @user.hometown.try(:name) %>
+```
 
 
 
