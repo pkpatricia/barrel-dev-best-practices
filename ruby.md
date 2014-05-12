@@ -101,11 +101,17 @@ The gem "Delayed Job", which was extracted form the Shopify code base, makes all
 ## Using Turbolinks
 As of Rails 4, Turbolinks is included in every app by default. 
 
-Turbolinks speeds up page load time by replacing the ```<body>``` and ```<title>``` tags, rather than loading a whole new page. If you're developing a straightforward, page-based app, Turbolinks is probably going to help you out. If you're developing a javascript heavy app, you may want to think about excluding it.
+Turbolinks speeds up page load time by replacing the ```<body>``` and ```<title>``` tags, rather than loading a whole new page.
 
 ##### Known Issues:
 
-In earlier versions, there was an issue with Twitter Bootstrap and jQuery UI compatibility, but I believe these have all been worked out. However, if they do give you issues, there are various third-party gems that bridge the gap (notes in the Railscast on Turbolinks).
+Because Turbolinks requires javascripts to fire on the `page:load` callback, you may run into issues when using third-party javascript plugins.
+
+##### The Verdict
+
+Use with caution; cut it out if it gives you too many issues.
+
+
 
 ##### Resources
 [Turbolinks](https://github.com/rails/turbolinks/)  
@@ -130,8 +136,8 @@ Keep those controllers slim. Move any code that doesn't directly relate to the r
 # controllers/tasks_controller.rb
 
 def index
-  @complete_tasks = Task.all :conditions => {['complete == ?', true]}
-  @incomplete_tasks = Task.all :conditions => {['complete == ?', false]}
+  @complete_tasks = Task.where(complete: true)
+  @incomplete_tasks = Task.where(complete: false)
 end
 ```
 
@@ -140,8 +146,8 @@ end
 ``` ruby
 # models/task.rb
 
-scope :complete, -> { where('complete == ?', true) }
-scope :incomplete, -> { where('complete == ?', false) }
+scope :complete, -> { where(complete: true) }
+scope :incomplete, -> { where(complete: false) }
 ```
 
 ``` ruby
@@ -212,11 +218,6 @@ Avoid the keywords ```and``` and ```or```, as they behave slightly differently t
 
 Do it.
 
-##### What is TDD?
-With TDD, you write your specs(tests) first, then write the actual code that makes the specs pass. This helps you make sure that you're writting the fewest lines of code necessary to get the desired functionality.
-
-Writing good specs also gives you a nice dev guide that breaks the app up into small, managable chunks - it forces you to focus.
-
 ##### RSpec
 
 Although Rails ships with a test suite, it's a good idea to rip that sucker out and replace it with RSpec - it has a more human-like syntax and a few extra cool features, which are very helpful when running large numbers of tests.
@@ -246,7 +247,7 @@ end
 
 ##### FactoryGirl
 
-FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code by letting you do cool stuff like:
+FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code and lets you do cool stuff like:
 
 ``` ruby
 # spec/factories/user_factories.rb
@@ -270,39 +271,19 @@ Which can be used in your tests to build a new User object:
 
 describe User do
   it "requires a valid email" do
-    user = FactoryGirl.build(:user)
+    user = FactoryGirl.create(:user)
     ...
   end
 end
 ```
 
-
-Be careful, though. Factories can be expensive, and when you have 200+ tests running, it can really slow you down. To help alleviate this, use standard Ruby techniques when a factory isn't completely necessary.
-
-Good:
-``` ruby
-describe User do
-  it "requires a valid email" do
-    user = FactoryGirl.build(:user)
-    ...
-  end
-end
-```
-
-Maybe Better, if you don't need all of the user's attributes:
-``` ruby
-describe User do
-  it "requires a valid email" do
-    user = User.new(email: "jason.bourne@cia.gov")
-    ...
-  end
-end
+Be careful, though. Everytime you call `FactoryGirl.create` you're hitting the database, which get expensive. Unless you need your record to persist, use the `FactoryGirl.build` method.
 ```
 
 
 ##### Use Contexts to Group Specs
 
-RSpec has two high-level block types: describe blocks and context blocks. The two are literally the same, functionally, but have an important contextual difference. **Describe blocks** are used to group specs that test similar pieces of functionality. **Context blocks** are generally used inside of describe blocks to group specs that test functionality when a particular set of conditions are the same.
+RSpec has two high-level block types: describe blocks and context blocks. The two are the same, functionally, but have an important contextual difference. **Describe blocks** are used to group specs that test similar pieces of functionality. **Context blocks** are generally used inside of describe blocks to group specs that test functionality when a particular set of conditions are the same.
 
 For example, here we wrap all of our specs in a describe block because they are all testing the User model. We have two separate contexts, though. One for when the user is male and one for female.
 
@@ -444,7 +425,9 @@ The `try()` method (Rails only) attempts to call a given method on an object and
 ```
 
 
+## Non-Database-Backed Models (Rails)
+Many times, you'll be working with a form that requires validation, but doesn't necessarily need to hit the database (ex: an email contact form). Rather than writting your validations by hand, you can lean on ActiveModel using a [non-database-backed](https://gist.github.com/nathanhackley/872ef14b18767ca81355) model.
 
-
+Basically, this means you can create objects that behave like standard Rails models, without binding them to a database table.
 
 
