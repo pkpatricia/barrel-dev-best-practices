@@ -11,7 +11,7 @@
 - [Test-Driven Development](#test-driven-development)
 - [Dup, Clone, and Freeze](#be-careful-with-dup-clone-and-freeze)
 - [The try() Method](#the-try-method)
-
+- [Non-Database-Backed Models](#non-database-backed-models-rails)
 
 
 
