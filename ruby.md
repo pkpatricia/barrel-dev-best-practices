@@ -13,7 +13,7 @@
 - [The try() Method](#the-try-method)
 - [Non-Database-Backed Models](#non-database-backed-models-rails)
 - [Default Scope](#default-scope-rails)
-- [Unless / Else](#unless-else)
+- [Unless / Else](#unless--else)
 
 
 
