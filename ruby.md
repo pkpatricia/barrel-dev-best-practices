@@ -12,6 +12,7 @@
 - [Dup, Clone, and Freeze](#be-careful-with-dup-clone-and-freeze)
 - [The try() Method](#the-try-method)
 - [Non-Database-Backed Models](#non-database-backed-models-rails)
+- [Default Scope](#default-scope-rails)
 
 
 
@@ -430,4 +431,9 @@ Many times, you'll be working with a form that requires validation, but doesn't 
 
 Basically, this means you can create objects that behave like standard Rails models, without binding them to a database table.
 
+
+
+
+## Default Scope (Rails)
+Don't use it unless there's a really really good reason to. It will make your life Hell.
 
