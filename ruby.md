@@ -249,38 +249,8 @@ end
 
 ##### FactoryGirl
 
-FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code and lets you do cool stuff like:
+Be careful when using FactoryGirl. Everytime you call `FactoryGirl.create` you're hitting the database, which get expensive. Unless you need your record to persist, use the `FactoryGirl.build` method.
 
-``` ruby
-# spec/factories/user_factories.rb
-require 'factory_girl'
-
-FactoryGirl.define do
-
-  factory :user do
-    name 'Jason Bourne'
-    email 'jason.bourne@cia.gov'
-    password 'TerroristsSuck!'
-  end
-
-end
-```
-
-Which can be used in your tests to build a new User object:
-
-``` ruby
-# spec/models/user_spec.rb
-
-describe User do
-  it "requires a valid email" do
-    user = FactoryGirl.create(:user)
-    ...
-  end
-end
-```
-
-Be careful, though. Everytime you call `FactoryGirl.create` you're hitting the database, which get expensive. Unless you need your record to persist, use the `FactoryGirl.build` method.
-```
 
 
 ##### Use Contexts to Group Specs
