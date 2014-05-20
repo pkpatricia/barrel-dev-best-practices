@@ -13,6 +13,7 @@
 - [The try() Method](#the-try-method)
 - [Non-Database-Backed Models](#non-database-backed-models-rails)
 - [Default Scope](#default-scope-rails)
+- [Unless / Else](#unless-else)
 
 
 
@@ -437,3 +438,24 @@ Basically, this means you can create objects that behave like standard Rails mod
 ## Default Scope (Rails)
 Don't use it unless there's a really really good reason to. It will make your life Hell.
 
+
+
+
+## Unless / Else
+Don't do this, it's confusing:
+```ruby
+unless @user.boy?
+  puts "Girl!"
+else
+  puts "Boy!"
+end
+```
+
+Do this:
+```ruby
+if @user.boy?
+  puts "Boy!"
+else
+  puts "Girl!"
+end
+```
