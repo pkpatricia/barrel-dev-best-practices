@@ -3,7 +3,7 @@ Barrel Development Best Practices
 API/REST/Server Best Practices
 ------------------
 
-- Try to avoid using plugins (unsure if this can be a best practice, but apis change fast so it's nice to be incontrol)
+- Try to avoid using plugins (unsure if this can be a best practice, but apis change fast so it's nice to be in control)
 - When pulling data from a third party api (ex. twitter, facebook), always have a backup for if/**when** the api fails, this could be a db to pull the last posts from, etc. 
 
 ## Apache Configuration
@@ -44,3 +44,10 @@ Here are a couple of .htaccess rules used in several sites to improve caching.
 ##CDN, Sharding, or cookieless domain
 
 More research required.
+
+##Performance Testing
+
+Use Benchmarking and performance test suites such as:
+
+1.  [Google Insights](https://developers.google.com/speed/pagespeed/insights/)
+2.  [Pingdom](https://tools.pingdom.com)
