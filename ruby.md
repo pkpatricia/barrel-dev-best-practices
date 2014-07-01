@@ -23,7 +23,7 @@ You can use ! or ? at the end of a method name to be more descriptive. The conve
 
 ```ruby
 class Person
-  
+
   # Without a sufix, we reference the value of the attribute
   attr_accessor :can_talk
 
@@ -40,7 +40,7 @@ class Person
 end
 ```
 
-There are exceptions to the previous convention, but **DO NOT** write a method with a suffix unless it has a non-suffixed counterpart. 
+There are exceptions to the previous convention, but **DO NOT** write a method with a suffix unless it has a non-suffixed counterpart.
 
 ```ruby
 class Person
@@ -61,7 +61,7 @@ end
 
 
 ## Defer non-critical, expensive jobs
-If a request includes a labor-intensive job (the classic example is when sending an email to a user), that is not critical to the response you are sending to the user, then that job should be deferred to a queue. 
+If a request includes a labor-intensive job (the classic example is when sending an email to a user), that is not critical to the response you are sending to the user, then that job should be deferred to a queue.
 
 ##### The default process:
 
@@ -99,7 +99,7 @@ The gem "Delayed Job", which was extracted form the Shopify code base, makes all
 
 
 ## Using Turbolinks
-As of Rails 4, Turbolinks is included in every app by default. 
+As of Rails 4, Turbolinks is included in every app by default.
 
 Turbolinks speeds up page load time by replacing the ```<body>``` and ```<title>``` tags, rather than loading a whole new page.
 
@@ -180,7 +180,7 @@ Developers are often tempted to nest all of their resources like so:
 myapp.com/projects/12/tasks/193/comments/148
 ```
 
-Try to avoid nesting more than 2 levels deep, as it will gum up your link helpers in Rails, and create unnecessarily long URLs. 
+Try to avoid nesting more than 2 levels deep, as it will gum up your link helpers in Rails, and create unnecessarily long URLs.
 
 You should also consider using shallow nesting, which results in routes like this:
 
@@ -215,8 +215,6 @@ Avoid the keywords ```and``` and ```or```, as they behave slightly differently t
 
 
 ## Test-Driven Development
-
-Do it.
 
 ##### RSpec
 
@@ -277,8 +275,8 @@ describe User do
 end
 ```
 
-Be careful, though. Everytime you call `FactoryGirl.create` you're hitting the database, which get expensive. Unless you need your record to persist, use the `FactoryGirl.build` method.
-```
+Be careful, though. Every time you call `FactoryGirl.create` you're hitting the database, which get expensive. Unless you need your record to persist, use the `FactoryGirl.build` method.
+
 
 
 ##### Use Contexts to Group Specs
@@ -415,10 +413,10 @@ The `try()` method (Rails only) attempts to call a given method on an object and
 
 ```erb
 <% if @user.hometown %>
-  <%= @user.hometown.name %> 
+  <%= @user.hometown.name %>
 <% end %>
 ```
-  
+
 ...can become this:
 ```erb
 <%= @user.hometown.try(:name) %>
@@ -429,5 +427,3 @@ The `try()` method (Rails only) attempts to call a given method on an object and
 Many times, you'll be working with a form that requires validation, but doesn't necessarily need to hit the database (ex: an email contact form). Rather than writting your validations by hand, you can lean on ActiveModel using a [non-database-backed](https://gist.github.com/nathanhackley/872ef14b18767ca81355) model.
 
 Basically, this means you can create objects that behave like standard Rails models, without binding them to a database table.
-
-
