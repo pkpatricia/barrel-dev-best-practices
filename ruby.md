@@ -11,7 +11,9 @@
 - [Test-Driven Development](#test-driven-development)
 - [Dup, Clone, and Freeze](#be-careful-with-dup-clone-and-freeze)
 - [The try() Method](#the-try-method)
-
+- [Non-Database-Backed Models](#non-database-backed-models-rails)
+- [Default Scope](#default-scope-rails)
+- [Unless / Else](#unless--else)
 
 
 
@@ -245,24 +247,7 @@ end
 
 ##### FactoryGirl
 
-FactoryGirl is a gem that replaces the default Rails "fixtures" with what they call "factories". This helps DRY up your test code and lets you do cool stuff like:
-
-``` ruby
-# spec/factories/user_factories.rb
-require 'factory_girl'
-
-FactoryGirl.define do
-
-  factory :user do
-    name 'Jason Bourne'
-    email 'jason.bourne@cia.gov'
-    password 'TerroristsSuck!'
-  end
-
-end
-```
-
-Which can be used in your tests to build a new User object:
+Be careful when using FactoryGirl. Every time you call `FactoryGirl.create` you're hitting the database, which gets expensive. Unless you need your record to persist, use the `FactoryGirl.build` method:
 
 ``` ruby
 # spec/models/user_spec.rb
@@ -274,9 +259,6 @@ describe User do
   end
 end
 ```
-
-Be careful, though. Every time you call `FactoryGirl.create` you're hitting the database, which get expensive. Unless you need your record to persist, use the `FactoryGirl.build` method.
-
 
 
 ##### Use Contexts to Group Specs
@@ -427,3 +409,27 @@ The `try()` method (Rails only) attempts to call a given method on an object and
 Many times, you'll be working with a form that requires validation, but doesn't necessarily need to hit the database (ex: an email contact form). Rather than writting your validations by hand, you can lean on ActiveModel using a [non-database-backed](https://gist.github.com/nathanhackley/872ef14b18767ca81355) model.
 
 Basically, this means you can create objects that behave like standard Rails models, without binding them to a database table.
+
+
+## Default Scope (Rails)
+Don't use it unless there's a really good reason to. It will make your life Hell.
+
+
+## Unless / Else
+Don't do this, it's confusing:
+```ruby
+unless @user.boy?
+  puts "Girl!"
+else
+  puts "Boy!"
+end
+```
+
+Do this:
+```ruby
+if @user.boy?
+  puts "Boy!"
+else
+  puts "Girl!"
+end
+```

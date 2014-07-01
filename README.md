@@ -3,7 +3,7 @@ Barrel Development Best Practices
 
 ### List of Topics
 
-- [API/REST](restful.md)
+- [API/REST/Server](restful.md)
 - [CodeIgniter](codeigniter.md)
 - [CSS](css.md)
 - [ExpressionEngine](ee.md)
