@@ -101,24 +101,8 @@ The gem "Delayed Job", which was extracted form the Shopify code base, makes all
 
 
 ## Using Turbolinks
-As of Rails 4, Turbolinks is included in every app by default.
-
-Turbolinks speeds up page load time by replacing the ```<body>``` and ```<title>``` tags, rather than loading a whole new page.
-
-##### Known Issues:
-
-Because Turbolinks requires javascripts to fire on the `page:load` callback, you may run into issues when using third-party javascript plugins.
-
-##### The Verdict
-
-Use with caution; cut it out if it gives you too many issues.
-
-
-
-##### Resources
-[Turbolinks](https://github.com/rails/turbolinks/)  
-[Railscast on Turbolinks](http://railscasts.com/episodes/390-turbolinks)
-
+[Fuck Turbolinks.](https://coderwall.com/p/bylmmw) There, I said it.  
+-N
 
 
 
