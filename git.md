@@ -7,6 +7,7 @@
 - [Working with Others](#working-with-others)
 - [Working on an Existing App](#working-on-an-existing-app)
 - [Github Issues](#issues)
+- [Git Quick Reference](#quick-reference)
 
 ## Commit Frequency
 
@@ -51,3 +52,51 @@ git commit -m "fixes #21, usernames now link to user's profile"
 ```
 
 Once merged into Master, the keyword _"fixes #21"_ lets Github know to close issue #21 and add a reference to this commit.
+
+## Quick Reference
+Push to branch 'master' on remote 'origin':
+```
+git push origin master
+```
+Pull from branch 'master' on remote 'origin':
+```
+git pull origin master
+```
+Retrieve commit hash of current commit, last commit, five commits prior:
+```
+git rev-parse HEAD
+git rev-parse HEAD~
+git rev-parse HEAD~5
+```
+Stage/add all untracked files:
+```
+git add --all
+```
+Commit all staged/added files:
+```
+git commit --all
+```
+Checkout an existing branch 'staging':
+```
+git checkout staging
+```
+Retrieve/update all remote tracking branches:
+```
+git fetch --all
+```
+Create a new branch 'test':
+```
+git branch test
+```
+Delete branch 'test':
+```
+git branch -D test
+```
+Add a remote 'origin':
+```
+git remote add origin https://github.com/barrel/barrel-dev-best-practices.git
+```
+List all remotes verbosely:
+```
+git remote -v
+```
