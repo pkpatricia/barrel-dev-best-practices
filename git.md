@@ -1,7 +1,6 @@
 ### Barrel Development Best Practices
 
 # Git Best Practices
-----------------------------
 - [Commit Frequency](#commit-frequency)
 - [Working with Others](#working-with-others)
 - [Working on an Existing App](#working-on-an-existing-app)
