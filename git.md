@@ -14,7 +14,7 @@
 
 ## Working with Others
 
-Assume your code will be inherited by another person. You should **never** work directly on the "master" branch. It's best practice to make "feature branches," which can be merged into "master" as you complete features.  
+Assume your code will be inherited by another person. You should **never** work directly on the "master" branch. It's best practice to make "feature branches", which can be merged into "master" as you complete features.  
 
 #### Tips for working with [Feature] Branches
 
