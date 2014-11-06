@@ -17,8 +17,7 @@
 *	**Another Entry**
 
 
-Resources
----------
+## Resources
 
 - [GitHub Markdown](https://help.github.com/articles/github-flavored-markdown)
 - [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax)
