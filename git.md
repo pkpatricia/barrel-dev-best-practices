@@ -1,5 +1,4 @@
-#### Barrel Development Best Practices
-
+### Barrel Development Best Practices
 
 # Git Best Practices
 ----------------------------
