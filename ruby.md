@@ -1,7 +1,6 @@
-#### Barrel Development Best Practices
+### Barrel Development Best Practices
 
 # Ruby / RoR Best Practices
-----------------------------
 - [Method Suffixes](#method-suffixes--and-)
 - [Defer non-critical, expensive jobs](#defer-non-critical-expensive-jobs)
 - [Turbolinks](#use-turbolinks---when-it-makes-sense)
@@ -15,12 +14,8 @@
 - [Default Scope](#default-scope-rails)
 - [Unless / Else](#unless--else)
 
-
-
-
-
-
 ## Method Suffixes (! and ?)
+
 You can use ! or ? at the end of a method name to be more descriptive. The convention is:
 
 ```ruby
@@ -57,11 +52,6 @@ class Person
 end
 ```
 
-
-
-
-
-
 ## Defer non-critical, expensive jobs
 If a request includes a labor-intensive job (the classic example is when sending an email to a user), that is not critical to the response you are sending to the user, then that job should be deferred to a queue.
 
@@ -81,39 +71,21 @@ If a request includes a labor-intensive job (the classic example is when sending
 4. Server sends immediate response to client – *client side is now unblocked*
 5. Server completes the expensive function whenever a processor is free
 
-
 Obviously, if you need to include the result of the expensive job in your response to the client, then this is not an option.
 
 The gem "Delayed Job", which was extracted form the Shopify code base, makes all of this super easy. Plus, it plays nice with hosting plans like Heroku.
-
 
 ##### Resources
 [Delayed Job](https://github.com/collectiveidea/delayed_job)  
 [Railscast on Delayed Job](http://railscasts.com/episodes/171-delayed-job-revised)  
 [Heroku Documentation](https://devcenter.heroku.com/articles/delayed-job)
 
-
-
-
-
-
-
-
-
 ## Using Turbolinks
-[Fuck Turbolinks.](https://coderwall.com/p/bylmmw) There, I said it.  
--N
 
-
-
-
-
-
-
-
-
+[Fuck Turbolinks.](https://coderwall.com/p/bylmmw) There, I said it. -N
 
 ## Fat Models, Skinny controllers, and Scopes
+
 Keep those controllers slim. Move any code that doesn't directly relate to the response into the model.
 
 ##### Bad:
@@ -148,16 +120,9 @@ end
 The real advantage here is that we can now use the ```:complete``` and ```:incomplete``` scopes in other parts of the app. For example. If we want to see all incomplete tasks for a specific user, we could do something like:
 
 ``` ruby
-
 @user = User.find(:id)
 @user_tasks = @user.tasks.incomplete
 ```
-
-
-
-
-
-
 
 ## Shallow Nesting
 Developers are often tempted to nest all of their resources like so:
@@ -184,28 +149,15 @@ This gives you the semantic benefit of nested routes, but without the long URLs.
 ##### Resources
 [Rails Routing Guide](http://guides.rubyonrails.org/routing.html)
 
-
-
-
-
-
-
 ## Don't use the and / or keywords
+
 Avoid the keywords ```and``` and ```or```, as they behave slightly differently than ```&&``` and ```||```, and it's not worth the added confusion.
-
-
-
-
-
-
-
 
 ## Test-Driven Development
 
 ##### RSpec
 
 Although Rails ships with a test suite, it's a good idea to rip that sucker out and replace it with RSpec - it has a more human-like syntax and a few extra cool features, which are very helpful when running large numbers of tests.
-
 
 ##### Naming Specs
 
@@ -243,7 +195,6 @@ describe User do
   end
 end
 ```
-
 
 ##### Use Contexts to Group Specs
 
@@ -294,18 +245,9 @@ end
 [Rspec](https://github.com/rspec/rspec)  
 [How did you learn Rails testing (preferably RSpec)? (SO)](http://stackoverflow.com/questions/9934351/how-did-you-learn-rails-testing-preferably-rspec)
 
-
-
-
-
-
-
-
-
-
 ## Be careful with .dup, .clone, and .freeze
-Ruby includes a few basic object methods, some of which are fairly nuanced.
 
+Ruby includes a few basic object methods, some of which are fairly nuanced.
 
 ##### .freeze
 
@@ -324,6 +266,7 @@ jon.grown_up = true	# RuntimeError, jon is a frozen object
 ```
 
 Arrays are a bit trickier. When you freeze an array, the array object is frozen, but not the objects that make up the array:
+
 ``` ruby
 numbers = ["one", "two", "three"]
 numbers.freeze
@@ -333,7 +276,6 @@ numbers[2] = "four" 	# RuntimeError, you can't modify what objects make up the a
 numbers[2].replace("four")		# allowed, you aren't changing the array, just a specific object
 numbers   # ["one", "four", "three"]
 ```
-
 
 ##### .dup vs .clone
 
@@ -351,7 +293,6 @@ this.dup.size   	# NoMethodError
 this.clone.size 	# 99
 ```
 
-
 The "Frozen" state is not preserved via ```.dup```, but is with ```.clone```
 
 ``` ruby
@@ -366,11 +307,6 @@ jon.freeze
 jon.dup.name = "Greg"   # Allows the change
 jon.clone.name = "Greg" # RuntimeError
 ```
-
-
-
-
-
 
 ## The try() Method
 Super handy, easy to forget about.
@@ -388,19 +324,20 @@ The `try()` method (Rails only) attempts to call a given method on an object and
 <%= @user.hometown.try(:name) %>
 ```
 
-
 ## Non-Database-Backed Models (Rails)
+
 Many times, you'll be working with a form that requires validation, but doesn't necessarily need to hit the database (ex: an email contact form). Rather than writting your validations by hand, you can lean on ActiveModel using a [non-database-backed](https://gist.github.com/nathanhackley/872ef14b18767ca81355) model.
 
 Basically, this means you can create objects that behave like standard Rails models, without binding them to a database table.
 
-
 ## Default Scope (Rails)
+
 Don't use it unless there's a really good reason to. It will make your life Hell.
 
-
 ## Unless / Else
+
 Don't do this, it's confusing:
+
 ```ruby
 unless @user.boy?
   puts "Girl!"
