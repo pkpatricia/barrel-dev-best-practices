@@ -2,7 +2,7 @@
 
 We are now using [PSR-1](http://www.php-fig.org/psr/psr-1/) coding standards and [PSR-2](http://www.php-fig.org/psr/psr-2/) style standards for PHP. Please read these standards before reviewing the recommendations below.
 
-The basic principles below apply as a fallback and are acceptable alternatives in any other instances.
+The basic principles below apply as a fallback and are acceptable alternatives to PSR-1 and PSR-2 in the instances outlined.
 
 ---
 
