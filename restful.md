@@ -1,10 +1,8 @@
-Barrel Development Best Practices
+### Barrel Development Best Practices
 
-API/REST/Server Best Practices
-------------------
-
-- Try to avoid using plugins (unsure if this can be a best practice, but apis change fast so it's nice to be in control)
-- When pulling data from a third party api (ex. twitter, facebook), always have a backup for if/**when** the api fails, this could be a db to pull the last posts from, etc. 
+# API/REST/Server Best Practices
+- Try to avoid using plugins (apis change fast so it's nice to be in control)
+- When pulling data from a third party api (ex. Twitter, Facebook), always have a backup for if/**when** the api fails, this could be a db to pull the last posts from, etc. 
 
 ## Apache Configuration
 
