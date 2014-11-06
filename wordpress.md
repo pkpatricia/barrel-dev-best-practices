@@ -1,7 +1,6 @@
 ### Barrel Development Best Practices
 
-WordPress Best Practices
-=======================
+# WordPress Best Practices
  
 ## Useful Config During Development
 
@@ -15,7 +14,7 @@ Do not suppress error logging and output. This often helps if you are using thir
 
 `define( 'WP_DEBUG', true ); // Zero days`
 
-Disable or reduce post revisions—not autosaves; there’s another constant for that. This reduces the amount of database entries. 
+Disable or reduce post revisions—not autosaves; there’s another constant for that. This reduces the amount of database entries.
 
 `define( 'WP_POST_REVISIONS', false ); // Or an integer fewer than 3`
 
@@ -195,4 +194,3 @@ Please make use of WordPress APIs and classes—that’s what they’re there fo
 ## Additional Resources for Best Practices
 
 WordPress has [standard practices](http://make.wordpress.org/core/handbook/coding-standards/) for Theme developers, which includes PHP, HTML, Javascript, and CSS recommendations. These are not biblical, but they should be reviewed and closely followed for broad reception, especially when your code might be handed off to another developer.
-
