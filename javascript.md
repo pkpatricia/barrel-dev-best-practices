@@ -1,7 +1,6 @@
 ### Barrel Development Best Practices
 
-JavaScript Best Practices
--------------------------
+# JavaScript Best Practices
 
 - [General](#general)
 - [jQuery](#jquery)
