@@ -1,8 +1,6 @@
 ### Barrel Development Best Practices
 
-Formatting Guidelines
----------------------
-
+# Formatting Guidelines
 
 *	**Entry Title**
 
