@@ -10,7 +10,7 @@
 
 Here are a couple of .htaccess rules used in several sites to improve caching.
 
-1.  Vary: Accept-Encoding - *More research is needed to clearly understand what this rule does.*
+1.  Vary: Accept-Encoding - *More research is needed to clearly understand what this rule does*
 
         <IfModule mod_headers.c>
         	<FilesMatch "\.(js|css|svg|woff|xml|gz)$">
