@@ -1,6 +1,6 @@
 ### Barrel Development Best Practices
 
-In general, we are now using [PSR-1](http://www.php-fig.org/psr/psr-1/) coding standards and [PSR-2](http://www.php-fig.org/psr/psr-2/) style standards for PHP. Please read these standards.
+We are now using [PSR-1](http://www.php-fig.org/psr/psr-1/) coding standards and [PSR-2](http://www.php-fig.org/psr/psr-2/) style standards for PHP. Please read these standards.
 
 The basic principles below apply as a fallback and are acceptable alternatives in any other instances.
 
