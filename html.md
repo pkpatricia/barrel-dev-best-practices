@@ -1,4 +1,3 @@
 ### Barrel Development Best Practices
 
-HTML Best Practices
--------------------
+# HTML Best Practices
