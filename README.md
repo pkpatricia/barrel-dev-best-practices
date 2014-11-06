@@ -5,7 +5,6 @@ Barrel Development Best Practices
 
 - [API/REST/Server](restful.md)
 - [CSS](css.md)
-- [ExpressionEngine](ee.md)
 - [Git](git.md)
 - [HTML](html.md)
 - [Javascript](javascript.md)
