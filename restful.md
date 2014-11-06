@@ -40,7 +40,8 @@ Here are a couple of .htaccess rules used in several sites to improve caching.
         </IfModule>
 
 3.  Expires, Cache-Control: max-age, Last-Modified and ETag headers
-  Further research practices mentioned at [Google Insights](https://developers.google.com/speed/docs/insights/LeverageBrowserCaching) and possible implementations.
+
+Further research practices mentioned at [Google Insights](https://developers.google.com/speed/docs/insights/LeverageBrowserCaching) and possible implementations.
 
 ##CDN, Sharding, or cookieless domain
 
