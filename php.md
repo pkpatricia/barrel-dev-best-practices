@@ -1,8 +1,14 @@
 ### Barrel Development Best Practices
 
+In general, we are now using [PSR-1](http://www.php-fig.org/psr/psr-1/) coding standards and [PSR-2](http://www.php-fig.org/psr/psr-2/) style standards for PHP. Please read these standards.
+
+The basic principles below apply as a fallback in any other instances.
+
+---
+
 # PHP Best Practices
 
-_Because each PHP framework approaches code quality in a different way, it is important to respect the best practices and style guidelines for each framework on a case-by-case basis. The formats listed below highlight long-standing practices for PHP and should be used as a general guideline._
+_Because each PHP framework approaches code quality in a different way, it is important to respect the best practices and style guidelines for each framework on a case-by-case basis (ex. Wordpress, Laravel, Magento). The formats listed below highlight long-standing practices for PHP and should be used as a general guideline._
 
 ## Style
 
