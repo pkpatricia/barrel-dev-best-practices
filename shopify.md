@@ -1,13 +1,12 @@
 ### Barrel Development Best Practices
 
-Shopify Best Practices
-----------------------
+# Shopify Best Practices
 
-###Tools###
+## Tools
 
 - There is a Shopify Desktop Editor app that can be useful if you're using a git and/or a compiler. When you use the app, your saved files get pushed directly to the server. **However, there may be issues with OSX Mavericks.**
 
-###Template Conditionals###
+## Template Conditionals
 
 - Class or ID your body tag based on the template shown (**template-product, template-collection, template-page**, etc.)
 - Use template conditionals to change the page title and SEO/OG tags in the theme header:
@@ -26,22 +25,18 @@ Shopify Best Practices
 	
 ```
 
-
-###Recycle Product "add to cart" code###
+## Recycle Product "add to cart" code
 
 - If you anticipate having multiple add to cart buttons on a page (e.g. a "Quick View" or "Quick Add" button on the collections, related products, recently viewed, or search templates), you'll want your add to cart elements to use classes, not IDs. You'll also probably want to dump this code in a snippet of some kind. 
 
-
-###Displaying Product Prices###
+## Displaying Product Prices
 
 - Wrap any instance of your shop's price in some kind of classed tag -- chances are that its style or value will change, based on product variant options, sale prices, or other factors.
 - Additionally, don't forget all types of price displays (sale prices with "compare at" values, prices with ranges based on variants)
 
-###Including Price Scripts###
+## Including Price Scripts
 
 - Don't forget to use Shopify-hosted js assets (option_selection.js, selectCallback function) so that product option changes also reflect price changes properly on the front end.
-
-
 
 ```
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
@@ -65,7 +60,8 @@ Shopify Best Practices
 </script >
 ```
 
-###Uploaded Assets###
+## Uploaded Assets
+
 - When linking to uploaded assets, make sure to use Shopify's asset syntax (which links to the Shopify CDN-hosted version of the file):
 
 ```
@@ -87,7 +83,7 @@ Shopify Best Practices
 </style>
 
 ```
-###Site Search###
+## Site Search
 
 - Most likely, you'll want to limit search results to products by adding a hidden field to your search form:
 
@@ -99,11 +95,11 @@ Shopify Best Practices
 </form>
 ```
 
-###Checkout Pages###
+## Checkout Pages
 
 - Because Shopify's checkout pages are hosted elsewhere (**checkout.shopify.com**), content on that page is not editable. It can only be styled (or rather, re-styled) by reading a theme's **checkout.css** file. In this file, you'll need to override the default checkout styles with ones closer to your theme's appearance.
 
-###Secret collections template###
+## Secret Collections Template
 
 - By default, every Shopify store has a front-end template for **storename.com/collections/** which lists all of the collections in the store -- but weirdly enough there is no .liquid template for it. 
 - If you want to call it in the template, you do something like this in your layout file (where list-collections is a **snippet**, not a template): 
