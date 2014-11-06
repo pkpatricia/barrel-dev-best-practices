@@ -1,13 +1,12 @@
 ### Barrel Development Best Practices
 
-Responsive Best Practices
--------------------------
+# Responsive Best Practices
 
 - [Mobile Performance](#mobile-performance)
 - [Retina](#retina)
 - [Responsive Layout](#responsive-layout)
 
-### Mobile Performance
+## Mobile Performance
 
 *	**Visual Assets**
 
@@ -38,8 +37,8 @@ Responsive Best Practices
 	Raster images (.JPG, .PNG, .GIF) should only be used when none of the above solutions are possible (e.g. a photograph or texture). File-sizes are extremely large by comparison. This method is not retina friendly as raster images degrade as they are scaled. For retina compatibility, raster assets should be served at twice the size they would occupy in CSS pixels.
 	
 
-### Retina
+## Retina
 
 
 
-### Responsive Layout
+## Responsive Layout
