@@ -1,30 +1,26 @@
 ### Barrel Development Best Practices
 
-PHP Best Practices
-------------------
+# PHP Best Practices
 
 _Because each PHP framework approaches code quality in a different way, it is important to respect the best practices and style guidelines for each framework on a case-by-case basis. The formats listed below highlight long-standing practices for PHP and should be used as a general guideline._
 
-### Style
+## Style
 
-#### Boolean
-
-PHP booleans, `TRUE`, `FALSE`, `NULL`, should traditionally be written in uppercase for readability.
-
-#### Control structures
+### Control structures
 
 Conditional control structures `if`, `while`, `for`, `foreach`, and `switch` should have white space following the structure and the condition for readability.
 
 Wrong:
-```
+```php
   if($foo == $bar){
     foreach($foo as $f){
       return $f;
     }
   }
 ```
+
 Right:
-```
+```php
   if ($foo == $bar) {
     foreach ($foo as $f) {
       return $f;
@@ -32,30 +28,31 @@ Right:
   }
 ```
 
-#### Methods
+### Methods
 
 Method names should be descriptive of their actions and all lowercase, with underscores separating words. Method parameters should be comma separated with white space to improve readability.
 
 Wrong:
-```
+```php
 function echoRoll($str,$int,$bool)
 {
   echo 'Fox, do a barrel roll!';
 }
 ```
+
 Right:
-```
+```php
 function tell_fox_to_roll($str, $int, $bool)
 {
   echo 'Fox, do a barrel roll!';
 }
 ```
 
-#### Private and protected class variables
+### Private and protected class variables
 
 It is helpful to prefix an underscore `_` to private or protected varaible names so that non-encapsulated variables can be easily identified. For instance:
 
-```
+```php
 Class Foo
 {
   protected $_foo;    // Available to Foo and extensions of Foo
@@ -91,9 +88,9 @@ $foobar = new Bar('hello world', 5, TRUE);
 $foobar->pub = FALSE; // Changes $_pub to FALSE
 ```
 
-### Syntax
+## Syntax
 
-#### Short open tags
+### Short open tags
 
 [PHP tags](http://www.php.net/manual/en/language.basic-syntax.phptags.php)
 
@@ -101,16 +98,17 @@ Typically, it is best practice to use the full `<?php` open tag verses the short
 
 Use of the short echo tag, `<?=`, reqires activation only in PHP instances < 5.4, and can be safely used on any server using PHP 5.4 or where `short_open_tag` is set to true.
 
-#### Accidental whitespace
+### Accidental whitespace
 
 Files that are pure PHP should have `<?php` on line one and should not have any new lines or white space at the top of the file. It is also best practice to omit the closing PHP tag at the end of the file in order to avoid the output buffer from sending the output unintentially.
 
-#### Templating with PHP
+### Templating with PHP
 
 [Alternate syntax for control structures](http://us1.php.net/alternative_syntax)
 
 When templating with PHP, it is best practice to use alternate syntax for the `if`, `while`, `for`, `foreach`, and `switch` control structures. Generic `}` closing tags are non-descriptive, and use of alternate syntax helps clarify the end of events. For example:
-```
+
+```php
 <section id="Blog">
   <?php if ($articles) { ?>
     <?php foreach ($articles as $article){ ?>
@@ -124,8 +122,10 @@ When templating with PHP, it is best practice to use alternate syntax for the `i
   <?php } ?>
 </section>
 ```
+
 Is better written as:
-```
+
+```php
 <section id="Blog">
   <?php if ($articles) : ?>
     <?php foreach ($articles as $article): ?>
@@ -139,7 +139,3 @@ Is better written as:
   <?php endif; ?>
 </section>
 ```
-
-
-
-
