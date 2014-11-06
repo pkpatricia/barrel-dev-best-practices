@@ -5,7 +5,7 @@
 - [General](#general)
 - [jQuery](#jquery)
 
-### General
+## General
 
 *	**Encapsulate functions and variables as object methods and properties**
 
@@ -75,7 +75,7 @@
 	</body>
 	```
 	
-### jQuery
+## jQuery
 
 *	**Using "Document Ready"**
 
