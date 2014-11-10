@@ -4,7 +4,7 @@ Barrel Development Best Practices
 ### List of Topics
 
 - [API/REST/Server](restful.md)
-- [CSS](css.md)
+- [CSS & Pre-processing](css.md)
 - [Git](git.md)
 - [HTML](html.md)
 - [Javascript](javascript.md)
@@ -13,6 +13,6 @@ Barrel Development Best Practices
 - [Ruby / RoR](ruby.md)
 - [Shopify](shopify.md)
 - [WordPress](wordpress.md)
-- [Task Runners & Pre-compilers](grunt.md)
+- [Task Runners](grunt.md)
 
 [Formatting Guidelines](formatting-guidelines.md)
