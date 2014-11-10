@@ -46,7 +46,8 @@ CSS Best Practices
 * For best performance, animate CSS transform properties instead of position, margin, height/width, etc. whenever possible.
 
 ### Preprocessing
-A preprocessor can be used to simplify style sheet authoring by extending the basic CSS syntax.
+A preprocessor can be used to simplify style sheet authoring by extending the basic CSS syntax. At Barrel we prefer to use Sassy (`*.scss`) for preprocessing. You may use less (`*.less`) or another flavor of sass (`*.sass`), but you must seek the approval from a Lead Developer and include this in your development approach when scoping a project. 
+
 * Organize CSS into separate files that group related styles.
 
 * Define commonly used values as variables.
