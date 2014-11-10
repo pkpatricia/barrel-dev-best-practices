@@ -36,6 +36,13 @@
 	
 	Raster images (.JPG, .PNG, .GIF) should only be used when none of the above solutions are possible (e.g. a photograph or texture). File-sizes are extremely large by comparison. This method is not retina friendly as raster images degrade as they are scaled. For retina compatibility, raster assets should be served at twice the size they would occupy in CSS pixels.
 	
-## Retina
+## Retina, Pixel-Density
+
+"Retina" is relatively new for the web. Previously most monitors and displays output data rendered to the screen at a pixel density of 72-96ppi. This is no longer a standard in the industry as many other devices being introduced to market have vastly different pixel densities. 
+
+*	Use SVG assets whenever possible, and include PNG fallbacks for supported legacy browsers.
+*	Append the @2x to image files (png, jpg, gif, etc) and include a media query to target known retina (or high pixel density) devices. It's also possible to use a shim to retroactively parse images and replace them on the fly with a higher resolution image, but this is often javascript-based and will require a separate image asset to be requested and served on each load, which is not ideal.
 
 ## Responsive Layout
+
+All Barrel sites are responsive unless otherwise indicated. Usage of media queries at various break points must be utilized to achieve a scalable and responsive website. More details TBD.
