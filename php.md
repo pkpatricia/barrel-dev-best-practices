@@ -4,6 +4,8 @@ We are now using [PSR-1](http://www.php-fig.org/psr/psr-1/) coding standards and
 
 The practices below may be used as a fallback and are acceptable alternatives to PSR-1 and PSR-2 only in the instances outlined. This may help in the cases of working with legacy PHP or supporting older applications.
 
+Additionally we are adopting a rule that all code must be well-documented. All comments and headers must use [phpdoc](http://www.phpdoc.org/docs/latest/index.html)-styled formatting syntax to allow for enhanced readbility and quick API documentation of site/app code. This includes documenting expected arguments and output of every function.
+
 ---
 
 # PHP Best Practices
