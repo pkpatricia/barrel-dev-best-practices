@@ -13,5 +13,6 @@ Barrel Development Best Practices
 - [Ruby / RoR](ruby.md)
 - [Shopify](shopify.md)
 - [WordPress](wordpress.md)
+- [Task Runners & Pre-compilers](grunt.md)
 
 [Formatting Guidelines](formatting-guidelines.md)
