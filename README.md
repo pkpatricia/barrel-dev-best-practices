@@ -5,6 +5,7 @@ Barrel Development Best Practices
 
 - [API/REST/Server](restful.md)
 - [CSS & Pre-processing](css.md)
+- [Documentation Guidelines](documentation.md)
 - [Git](git.md)
 - [HTML](html.md)
 - [Javascript](javascript.md)
@@ -21,7 +22,7 @@ Barrel Development Best Practices
 All projects regardless of the langauges and technologies used have a few common rules and best practices to follow. Please review the individual topics above for more specific cases.
 
 #### Documentation
-All code should use a commenting syntax that is parsable and standard. Most of the comment-parsers utilize a java-doc-style syntax. For php, this is phpdoc; for javascript, this is jsdoc; for java, this is javadoc; and for ruby, this is rubydoc. 
+All code should use a commenting syntax that is parsable and standard. Most of the comment-parsers utilize a java-doc-style syntax. For php, this is phpdoc; for javascript, this is jsdoc; for java, this is javadoc; and for ruby, this is rubydoc. See [Documentation Guidelines](documentation.md) for more details.
 
 #### Attribution
 All code should be attributed to "Barrel" unless imported from an existing project. That is to say, you should never include yourself as an author unless you wrote something at your leisure outside of Barrel for inclusion in a project. This includes all files such as stylesheets, javascript, and template files. We have a vast git history to know who wrote what.
