@@ -110,6 +110,7 @@ $('[data-src]').each(function(){
 *Elaborate and explain the reasons behind each of these. Examples should be shown. Call out expensive JS libraries.*
 
 - Check final minified sizes.
+- Set a loading / performance budget.
 - Keep under 64kb (when possible).
 - Use webfont loader script to help manage font loading even with local fonts.
 - Shrink fonts by removing unnecessary character sets.
