@@ -6,19 +6,65 @@
 
 *Please elaborate!*
 
-- Content should be immediately accessible.
-- DOM should always be usable without javascript.
-- Javascript should be treated as an enhancement.
+### Make sure the "most-important" page features are available as soon as possible.
+- Plan page loading "steps" in-line with UX priorities (what loads first, what is lazy-loaded or delayed).
+- Delay the load of blocking JavaScript and CSS that isn't essential for displaying the highest priority content.
+- Use asynchronous scripts whenever possible.
+- Content should be formatted to be readable as a document in the case of no CSS or JavaScript (position primary content such as posts or articles before sidebars or secondary information).
+
+### Don't rely soley on JavaScript for essential functionalities.
+- Content should be visible.
+- Essential images should have a fallback.
+- Links should still work (avoid inline onClick, use anchors in links and on page, AJAX links should point to resource).
 
 ## Image Loading
 
 *Add examples!*
 
 - Use inline javascript and css for loading.
+
+### Loading
+
+Add vanilla JavaScript loading functions and CSS responsible for loaders inline in the head, so it's available right away. For example:
+
+```css
+.bg-wrapper {
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ top: 0;
+ opacity: 0;
+ transition: opacity 200ms;
+}
+.bg-wrapper.loaded,
+.no-js .bg-wrapper {
+ opacity: 1;
+}
+.bg-wrapper img{
+ display: none;
+ position: absolute;
+}
+```
+```javascript
+function imgLoaded(img) {
+	var imgWrapper = img.parentNode;
+	imgWrapper.style.backgroundImage = 'url(' + img.src + ')';
+	imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
+}
+```
+```html
+<div class="bg-wrapper" style="background-image: url(http://foobar.jpg);">
+ <img src="http://foobar.jpg" onload="imgLoaded(this)" />
+</div>
+```
+
+The above function assumes modernizr is being used. The code waits for images to load prior to applying them as a background image to the containing div. If javascript is not enabled, the background image is applied as it normally would be. Consider using the onError event for user uploaded images.
+
 - Always put images in a wrapper div (allows for loading animations, forcing aspect ratios).
 - Option: Load from data-src and or src-set (when serving size based off media-width).
 - Option: Hide image and then move content into wrapper background.
 - Lazy loading using javascript to throttle number of images.
+- Provide fallback to display images when JavaScript is not available. *Noscript? Provide a src attribute on images with src-set.
 
 ## Image Sizes
 
