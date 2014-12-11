@@ -21,11 +21,9 @@
 
 *Add examples!*
 
-- Use inline javascript and css for loading.
+### Standard Loading
 
-### Loading
-
-Add vanilla JavaScript loading functions and CSS responsible for loaders inline in the head, so it's available right away. For example:
+Add vanilla JavaScript loading functions and CSS responsible for loaders inline in the head, so it's available right away. Always put images in a wrapper div (allows for loading animations, forcing aspect ratios). For example:
 
 ```css
 .bg-wrapper {
@@ -60,11 +58,38 @@ function imgLoaded(img) {
 
 The above function assumes modernizr is being used. The code waits for images to load prior to applying them as a background image to the containing div. If javascript is not enabled, the background image is applied as it normally would be. Consider using the onError event for user uploaded images.
 
-- Always put images in a wrapper div (allows for loading animations, forcing aspect ratios).
-- Option: Load from data-src and or src-set (when serving size based off media-width).
-- Option: Hide image and then move content into wrapper background.
-- Lazy loading using javascript to throttle number of images.
-- Provide fallback to display images when JavaScript is not available. *Noscript? Provide a src attribute on images with src-set.
+### Lazy Loading
+
+Lazy load using JavaScript to throttle number of images loaded at once. Waypoints can be used to determine when the loading script is fired for certain images on the page.
+
+- Load from data-src and or src-set (also can be used for serving different image sizes based off media-width).
+- Provide fallback to display images when JavaScript is not available. Consider using a `<noscript></noscript>` tag for loading images that would otherwise be lazy-loaded.
+
+For example:
+
+```javascript
+$('[data-src]').each(function(){
+	var src = $(this).attr('data-src') || '',
+	img = new Image(),
+	el = this;
+	
+	img.onload = function(){
+		if (el.tagName == 'DIV'){
+			el.style.backgroundImage = 'url(' + src + ')';
+		} else if (el.tagName == 'IMG'){
+			if (!! el.parent){
+				el.parent.replaceChild(img, el);
+			} else { 
+				el.src = src;
+			}
+		} 
+		setTimeout(function(){
+			$(el).addClass('visible');
+		}, 300);
+	}
+	img.src = '' + src;
+});
+```
 
 ## Image Sizes
 
