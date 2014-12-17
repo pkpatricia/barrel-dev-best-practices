@@ -8,6 +8,7 @@ Barrel Development Best Practices
 - [Documentation Guidelines](documentation.md)
 - [Git](git.md)
 - [HTML](html.md)
+- [HTTPS](https.md)
 - [Javascript](javascript.md)
 - [PHP](php.md)
 - [Responsive](responsive.md)
