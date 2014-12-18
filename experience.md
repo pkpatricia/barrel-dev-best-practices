@@ -99,19 +99,98 @@ $('[data-src]').each(function(){
 - Use pngs and/or svg for sprites (keep on a single sheet, SVG id helps make this possible).
 - Force WP to serve appropriate sizes, never original.
 
+The below example alters compression/quality levels of uploaded jpegs and pngs:
+
+Refer to WordPress file and image handling functions.
+
+```php
+<?php
+
+/**
+ * Handle any uploads from within wordpress
+ */
+add_filter( 'wp_handle_upload_prefilter', function($file){
+	if ( empty($file['tmp_name']) ) return $file;
+	$source = $file['tmp_name'];
+	list($image_width, $image_height, $image_type) = getimagesize($source);
+	$mime_type = image_type_to_mime_type($image_type);
+	
+	// create the file
+	switch($image_type) {
+	    case 2:
+			$source = imagecreatefromjpeg($image); 
+			imagejpeg($source,$file['tmp_name'],80);
+			break;
+	    case 3:
+			$source = imagecreatefrompng($image); 
+			imagepng($new_image,$image_path,8); 
+			break;
+  	}
+	
+	$source = imagecreatefromjpeg($file['tmp_name']);
+	imagejpeg($source,$file['tmp_name'],80);
+	return $file;
+});
+```
+
 ## History
 
-*Add examples!*
-
 - Listen to state change to trigger changes rather than triggering changes with click. This keeps track of changes with back/forward buttons.
+- Use History.js polyfill to support differences in browser implementations (and optionally add support to older browsers)
+
+```js
+
+// var nativeHistorySupport = (typeof window.history !== 'undefined');
+
+// Check for history
+if(History.enabled) {
+
+	// Add event listener to statechange event
+	$(window).bind('statechange', function(event) {
+		var currentState = History.getState();
+		
+		// currentState.data = {
+		// 	id: 'tab1'
+		// }
+		
+		// Update the DOM to reflect the new state.
+		
+		// e.g., scroll to linked section
+		$(window).scrollTop($('#'+currentState.data.id).offset().top);
+	})
+
+	// Prevent default click action and push new state
+	$('a.ajax-link').on('click', function(event) {
+		// Allow new tab clicks to function normally
+		if(event.metaKey || event.which != 1) {
+			return;
+		}
+		
+		event.preventDefault();
+	
+		var $a = $(this);
+	
+		var data = {
+			id: 'tab1'
+		};
+		var url = $a.attr('href');
+		var title = $a.attr('title');
+	
+		History.pushState(data, url, title);
+	});
+
+}
+
+```
+
 
 ## First Hop (Assets)
 
 *Elaborate and explain the reasons behind each of these. Examples should be shown. Call out expensive JS libraries.*
 
 - Check final minified sizes.
-- Set a loading / performance budget.
-- Keep under 64kb (when possible).
+- Set a loading / performance budget. TBD
+- Keep under 64kb (when possible). ???
 - Use webfont loader script to help manage font loading even with local fonts.
 - Shrink fonts by removing unnecessary character sets.
 - For icon fonts like FontAwesome, pull only the glyphs you need, create new icon font.
