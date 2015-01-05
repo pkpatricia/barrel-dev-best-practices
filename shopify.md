@@ -43,13 +43,13 @@ These are required for every Shopify theme.
 
 For stores with customer accounts enabled, the customer account templates are: 
 
-+ `customers/account.liquid:`
-+ `customers/activate_account.liquid:`
-+ `customers/addresses.liquid:`
-+ `customers/login.liquid:`
-+ `customers/order.liquid:`
-+ `customers/register.liquid:`
-+ `customers/reset_password.liquid:`
++ `customers/account.liquid`
++ `customers/activate_account.liquid`
++ `customers/addresses.liquid`
++ `customers/login.liquid`
++ `customers/order.liquid`
++ `customers/register.liquid`
++ `customers/reset_password.liquid`
 
 
 ### Shopify JS assets
@@ -66,8 +66,6 @@ For stores with customer accounts enabled, the customer account templates are:
 - A **selectCallback** method is called whenever a product is loaded on a page. It checks to see what variant of that product is currently selected, and changes the display accordingly. It is usually called in **product.liquid** and/or a snippet of some kind. More on this method can be found here: [http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options](http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options)
 
 ```
-< script type="text/javascript">
- 
    $(function() {
      var selectCallback = function(variant, selector) {
        $product = $('#product-' + selector.product.id);
@@ -79,8 +77,6 @@ For stores with customer accounts enabled, the customer account templates are:
        }
      };
    });
- 
-</script >
 ```
 
 
