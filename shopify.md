@@ -61,7 +61,7 @@ For stores with customer accounts enabled, the customer account templates are:
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 ```
 
-- Including this on your site will allow you to access a variety of objects, such as the product, its currently-selected variant, and all related attributes. It also makes 
+- Including this on your site will allow you to access a variety of objects, such as the product, its currently-selected variant, and all related attributes. 
 
 - A **selectCallback** method is called whenever a product is loaded on a page. It checks to see what variant of that product is currently selected, and changes the display accordingly. It is usually called in **product.liquid** and/or a snippet of some kind. More on this method can be found here: [http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options](http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options)
 
