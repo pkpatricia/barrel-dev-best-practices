@@ -6,17 +6,63 @@
 
 *Please elaborate!*
 
-- Minification/Concat JS/CSS
-- Minimize requests (but not to point of squeezing requests into too large of chunks)
-- Server-side caching
-    - Turn it on!
-	- DB Caching
-	- Page
-	- Object/Model (memcache/redis)
+### Minification/Concat JS/CSS
+- Establish workflow for minimizing asset groups at the beginning of the project. (It's probably Grunt. Gulp?)
+- If you're using an existing framework utilize it's asset pipeline. (Rails, Shopify)
+- Always create source maps for minified assets.
+- If using assistant tasks, like Autoprefixer, declare minimum browser version support.
+
+### Handle Requests Responsibly
+Minify scripts, but not to the point of squeezing requests into too large of chunks.
+
+- Determine what CSS and JS is necessary on page load.
+- Minimize the use of blocking CSS and JS libraries.
+- Stagger and defer problematic or non-essential scripts.
+- Thread large JS scripts by not minifying them with others.
+
+For problematic libraries like Facebook and YouTube, use asynchronous loading and callbacks to determine when the scripts are loaded and then execute.
+
+### Server-side Caching*
+Caching is a really great thing. USE IT! Often platforms have caching built right in, and the process of activating it is simply flipping a switch. If not, plugins exist for nearly every platform to make it possible.
+
+Server-side caching cannot always be a "full-page" cache since many sites have dynamic elements that change and need to change frequently (ecommerce, web-apps). This doesn't mean you can't use caching. Some options still exist:
+
+#### Partial Caching
+Partial or "fragment" caching uses key/value datastores like Redis or Memcache to store smaller parts of the page in the cache to quickly process smaller sections that have a longer refresh rate. These can usually be activated through framework extensions (see Rails, Magento, Wordpress, Shopify).
+
+#### DB Caching
+Database caching remembers common queries and their results so that they don't need to be called over and over. This is also referred to as Model Caching.
+
+#### Smart Back-end Code
+Minimize repetitious queries by storing common data in class variables that can be checked prior to a new database request.
+
+#### Common Settings / Considerations
+- Cache / datastore freshness and age
+- Refresh triggers (database, foreign key)
+
+### Client-side Caching
+- Use "Web Page Test" ya dummy!
+
+#### Version string
+Append version string for cached assets so you know you'll be getting the latest.
+
+- Make sure the versions string is based on when the asset was saved, not the time is was looked up.
+- Defer browser caching until launch, as not to mess with QA and provide realistic first-view times.
+- Set `max-age = "1" # Like, never` during development.*
+- Set `max-age = "2592000" # 30 days` pre-launch.*
+- See [this article](http://www.mobify.com/blog/beginners-guide-to-http-cache-headers/)
+
+```
+<script type="text/javascript" src="http://www.foobar.com/public/scripts/main.js?v=20150204121515" />
+```
+
+Version strings may be ineffective for particular CDNs. For example CloudFront provides the option of ignoring version strings when setting up the distribution. Be mindful of how your CDN will process the asset.
+
 - Client-side caching
     - Browser
 	- Expires
 	- CDN Libraries
+
 - CDN Domain Sharding
 - Social Libraries are slow
     - 3rd Party tracking as well
@@ -40,3 +86,4 @@
 - Picking the right libraries when less is best
 - NGROK
     -proxy to local
+- Databse indexing
