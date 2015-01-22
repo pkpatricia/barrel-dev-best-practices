@@ -72,10 +72,16 @@ Domain sharding is the process of separating assets to different domains so that
 - Separate and serve sets of assets from different domains on your CDN: CSS/JavaScript, static images, user uploads, etc.
 - More domains != more speed, typically content from the network should not be served from more than three domains (local, 2 x CDN)
 
+#### Managing Slow Libraries
+Some examples of really slow libraries: Facebook, Twitter, LinkedIn, social integrations in general, RT Pixel, Mixpanel, Hubspot, user lead tracking in general.
 
-- Social Libraries are slow
-    - 3rd Party tracking as well
-- Preloading images (actual pre-loading)
+- Offload scripts for slow libraries so that they load either at the end of the page or asynchronously (if that option is available).
+- Manage project expectations surrounding social integrations and other slow libraries.
+- Use back-end integrations when possible (Intercom, Mixpanel, Hubspot, etc).
+- When possible, don't block page render with lead tracking.
+
+---
+
 - Image minification/compression
     - Control upload size (ideal?)
 	- Communicate and leverage the best way
