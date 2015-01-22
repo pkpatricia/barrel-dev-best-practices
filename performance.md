@@ -58,12 +58,21 @@ Append version string for cached assets so you know you'll be getting the latest
 
 Version strings may be ineffective for particular CDNs. For example CloudFront provides the option of ignoring version strings when setting up the distribution. Be mindful of how your CDN will process the asset.
 
-- Client-side caching
-    - Browser
-	- Expires
-	- CDN Libraries
+#### CDNs
+A CDN (content delivery network) is a distributed network that will provide web assets to the client from the closest available location to limit network latency. You should totally set one of these up on all of your projects.
 
-- CDN Domain Sharding
+- When scoping projects, CDN should be part of the recommendation and budgeting.
+- CDN should be set up early in a project's lifecycle and used for both staging and production environments.
+
+For more information on setting up a CDN, please refer to [Dev How-Tos: CDN](https://github.com/barrel/barrel-dev-how-tos/blob/master/cdns.md).
+
+#### Domain Sharding
+Domain sharding is the process of separating assets to different domains so that more things can be downloaded simultaneously (6 threads per domain).
+
+- Separate and serve sets of assets from different domains on your CDN: CSS/JavaScript, static images, user uploads, etc.
+- More domains != more speed, typically content from the network should not be served from more than three domains (local, 2 x CDN)
+
+
 - Social Libraries are slow
     - 3rd Party tracking as well
 - Preloading images (actual pre-loading)
