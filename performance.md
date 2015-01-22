@@ -2,10 +2,6 @@
 
 # Performance
  
-## Everything
-
-*Please elaborate!*
-
 ### Minification/Concat JS/CSS
 - Establish workflow for minimizing asset groups at the beginning of the project. (It's probably Grunt. Gulp?)
 - If you're using an existing framework utilize it's asset pipeline. (Rails, Shopify)
@@ -80,25 +76,32 @@ Some examples of really slow libraries: Facebook, Twitter, LinkedIn, social inte
 - Use back-end integrations when possible (Intercom, Mixpanel, Hubspot, etc).
 - When possible, don't block page render with lead tracking.
 
----
 
+##TODO
+---
+###Scott
 - Image minification/compression
     - Control upload size (ideal?)
 	- Communicate and leverage the best way
+ 
+###Eric
+- Image sprites (load less)
+ 
+###Ben
 - Optimize backend code
+
+###Wes
+- Databse indexing
 - CSS Hardware Acceleration (opacity warning)
+
+###Zack
+- Use of SSL should be limited
 - Server Config
     - gzip
 	- keep alive (connections)
-- Font caching, # of fonts, CDN Fonts
-- Use of SSL should be limited
+
+###Kevin
 - Identify when ajax can happen
-- Image sprites (load less)
 - Queued Jobs
     - Email
 	- Curl
-- Non-blocking code
-- Picking the right libraries when less is best
-- NGROK
-    -proxy to local
-- Databse indexing
