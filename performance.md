@@ -76,6 +76,25 @@ Some examples of really slow libraries: Facebook, Twitter, LinkedIn, social inte
 - Use back-end integrations when possible (Intercom, Mixpanel, Hubspot, etc).
 - When possible, don't block page render with lead tracking.
 
+#### Gzip Compression
+Enabling compression of text based assets using Gzip will typically reduce file sizes by ~50%. This means less time spent by the client downloading assets, and less bandwidth used overall.
+
+- This form of compression is typically enabled by default but can be checked using a tool such as WebPagetest
+- Gzipping can be enabled via htaccess if it isn't already
+
+#### Keep-Alive
+Each new TCP connection requires a three-way handshake between the server and client to negotiate and start a TCP session. This handshake amounts to a full round trip of network latency before data is transmitted. A server setting known as "keep-alive" keeps connections between the server and client open for a configurable period to avoid the requirement for additional handshakes.
+
+- To determine if keep-alive is on, use WebPagetest
+- If keep-alive isn't enabled the server configuration should be modified (most likely this will be done through one of Apache's configuration files)
+- The ideal values for keep-alive's various parameters differ from environment to environment, and should be tuned accordingly
+- Keep-alive should be tuned before an environment enters production
+
+#### SSL
+The number of round trips required to establish an SSL/TLS connection (3 round trips vs. 1 for a standard TCP connection, assuming ideal conditions for both) result in a significant amount of additional network latency for new connections. Due to this additional overhead SSL/TLS should only be used when necessary.
+
+- If a client has requested that an entire site be accessed via HTTPS, even where the information being transmitted doesn't require encryption, inform them of the performance consequences.
+- Ensure that keep-alive has been enabled on any environments transmitting data via SSL/TLS to limit the number of new connections being made.
 
 ##TODO
 ---
@@ -93,12 +112,6 @@ Some examples of really slow libraries: Facebook, Twitter, LinkedIn, social inte
 ###Wes
 - Databse indexing
 - CSS Hardware Acceleration (opacity warning)
-
-###Zack
-- Use of SSL should be limited
-- Server Config
-    - gzip
-	- keep alive (connections)
 
 ###Kevin
 - Identify when ajax can happen
