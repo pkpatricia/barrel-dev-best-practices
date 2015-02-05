@@ -30,7 +30,10 @@ Partial or "fragment" caching uses key/value datastores like Redis or Memcache t
 Database caching remembers common queries and their results so that they don't need to be called over and over. This is also referred to as Model Caching.
 
 #### Smart Back-end Code
-Minimize repetitious queries by storing common data in class variables that can be checked prior to a new database request.
+- Minimize repetitious queries by storing common data in class variables that can be checked prior to a new database request.
+- Consider placing data in unique columns over joining tables when dealing with large amounts of data.
+- When connecting to an API periodically cache to a database or json files on a cron. Reference the locally cached data at runtime to avoid external latency.
+- Check logs for errors. A bad request, missing resource, or malformed code could be eating up server CPU without showing errors on the front-end.
 
 #### Common Settings / Considerations
 - Cache / datastore freshness and age
