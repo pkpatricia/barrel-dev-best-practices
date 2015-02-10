@@ -16,6 +16,7 @@ Barrel Development Best Practices
 - [Shopify](shopify.md)
 - [WordPress](wordpress.md)
 - [Task Runners](grunt.md)
+- [VM & Testing](http://infocenter.barrelny.com/how-to-browser-testing-procedures/)
 
 [Formatting Guidelines](formatting-guidelines.md) for this document.
 
