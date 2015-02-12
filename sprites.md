@@ -173,7 +173,10 @@ Max has more experience with Spritesmith, but what's it's doing is creating a sp
   @include sprite($icon-twitter);
 }
 .icon-twitter-png {
-  @include sprite-2x($icon-twitter); // this mixin doesn't come standard, but you could easily make one for those users running IE8 on a retina display.
+  @include sprite-2x($icon-twitter);
+  /* this mixin doesn't come standard, but you could easily make one
+  for those users who like to run IE8 on a retina display and
+  watch the world burn. */
 }
 ```
 
