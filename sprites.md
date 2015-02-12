@@ -202,11 +202,22 @@ window.onload = function(){
 ```
 
 ## Doing It
-I have (hardly a demo) [demo](http://sandbox.ericbailey.co) for your viewing pleasure. Look at it on IE8, the SVGs are gone and the PNGs replace them. Vice versa on every other browser. Those with a keen eye will notice that the sizing is inconsitent between the SVG version and the PNG version. I know this can be fixed with icon-specific CSS styles, which is meh, but I'd like to experiment with some other options built into the to spriting plugins to see if this can be minimized.
+So the total package is this:
+``` html
+<div class="icon-cont">
+  <svg viewBox="0 0 100 100" class="icon svg">
+    <use xlink:href="#icon_facebook"></use>
+  </svg>
+  <!--This element is 'display:none' using the '.icon.png' selector-->
+  <i class="icon-facebook-png icon png"></i>
+</div>
+```
+I have a (hardly a demo) [demo](http://sandbox.ericbailey.co) for your viewing pleasure. Look at it on IE8, the SVGs are gone and the PNGs replace them. Vice versa on every other browser. Those with a keen eye will notice that the sizing is inconsitent between the SVG version and the PNG version. I know this can be fixed with icon-specific CSS styles, which is meh, but I'd like to experiment with some other options built into the to spriting plugins to see if this can be minimized.
 
 ## Next Steps
  - find a good way to keep consistent scaling between PNG and SVG icons
  - properly manage the showing/hiding of each asset
  - kill the HTTP requests not needed
  - create Moustache templates that contain each icon (SVG and PNG) so as not to pollute the code
- - rewrite this entire document more better
+  - these could potentially control other attributes, like **sizing**.
+ - rewrite this entire document moar better
