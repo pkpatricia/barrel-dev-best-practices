@@ -3,7 +3,7 @@
 CSS Best Practices
 ------------------
 - [General](#general)
-- [Animation](#animation)
+- [Animation](#animation-more)
 - [Preprocessing](#preprocessing)
 
 ### General
