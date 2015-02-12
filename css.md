@@ -40,9 +40,12 @@ CSS Best Practices
   }
   ```
 
-### Animation
+### Animation ([more](http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/))
 * Use transitions for simple changes from one style to another. Use keyframe animations for more complex scripted actions.
-
+* Modern browsers can animate four things really cheaply: position, scale, rotation and opacity. If you animate anything else, it’s at your own risk, and the chances are you’re not going to hit a silky smooth 60fps.
+* Use the "Continuous Page Repainting" Tool in Chrome to monitor complex or large quantities of animated elements.
+* Avoid overusing `translateZ(0)` or `translate3d(0,0,0)` in a single page thereby creating too many composite layers.
+* In Blink and WebKit browsers a new layer is created for any element which has a CSS transition or animation on opacity. Therefore, excessive opacity transitions could result in the same issue of forcing a separate composite layer.
 * For best performance, animate CSS transform properties instead of position, margin, height/width, etc. whenever possible.
 
 ### Preprocessing
