@@ -4,8 +4,6 @@
  
 ## DOM Visibility
 
-*Please elaborate!*
-
 ### Make sure the "most-important" page features are available as soon as possible.
 - Plan page loading "steps" in-line with UX priorities (what loads first, what is lazy-loaded or delayed).
 - Delay the load of blocking JavaScript and CSS that isn't essential for displaying the highest priority content.
@@ -18,8 +16,6 @@
 - Links should still work (avoid inline onClick, use anchors in links and on page, AJAX links should point to resource).
 
 ## Image Loading
-
-*Add examples!*
 
 ### Standard Loading
 
@@ -182,7 +178,8 @@ if(History.enabled) {
 }
 
 ```
-
+## Animations
+See the [css](https://github.com/barrel/barrel-dev-best-practices/blob/master/css.md#animation-more) section.
 
 ## First Hop (Assets)
 
