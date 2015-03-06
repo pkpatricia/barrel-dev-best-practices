@@ -241,4 +241,8 @@ To access these stores, you can log in through [shopify.com/partners](http://www
   - [Outdoor Apparel](http://outdoor-apparel.myshopify.com/)
   - [Sunday Coffee](http://barrel-coffee.myshopify.com/)
   - [Bow Wow Ties](http://pet-accessories-3.myshopify.com/)
+  
+### Creating a Demo store
+
+Login at [shopify.com/partners](http://www.shopify.com/partners), go to **Development Stores**, and click **Create a new development store** in the right-hand corner. 
 
