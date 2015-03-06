@@ -173,3 +173,72 @@ body.index {
 	<button type="submit">Submit</button>
 </form>
 ```
+
+##Good To Know
+
+###Redirects###
+
+Shopify has an interface for 301 Redirects, in the **Navigation > URL Redirects** section of the admin dashboard (**URL Redirects** button is in the top right).
+
+### Snippets ###
+
+When including snippets such as 
+
+```
+{{ include 'snippet-name' }}
+```
+
+...you can add one value in your include:
+
+```
+{{ include 'snippet-name' with 'test' }}
+```
+
+...In the file that contains the snippet, **snippet-name** is now the name of a variable, with the value **test**. 
+
+###Ajax API versus Shopify API###
+
+***The Shopify API is different than the Ajax API!**
+
+The **[Ajax API](https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api)** returns JSON-encoded responses for **product** and **cart** information, allowing you to add items to your cart and fetch product info via javascript.  
+
+The **[Shopify API](https://docs.shopify.com/api)** provides a ton of endpoints for many components of your store, including Orders, Customers, Collections, Pages, Products, Metafields, and more. (See the API Reference column on the left of the [documentation page](https://docs.shopify.com/api)).
+
+You can quickly access this JSON information in your browser if you are logged into your store, by visiting your store URL (**using https**) with the endpoint location specified in the docs (e.g. http://www.parachutehome.com**/admin/collections.json**)
+
+To *create, edit, or update* this information, you'll need to build a separate app. To *GET* most of this information, you may also need a separate app, but...
+
+### ...I don't know how to categorize this ###
+
+If you're logged into your store and go to:
+
++ store-name.myshopify.com/products.json
++ store-name.myshopify.com/collections.json
++ store-name.myshopify.com/pages.json
+
+...you'll get a response, which is *different* from the response you'll get if you go to **/admin/collections.json** (for example). I can't explain why, but regardless, you can submit GET requests to the URLs above -- handy for "related products" or similar features. 
+
+- - - - -
+
+## Internal demo stores, and stores for testing
+
+To access these stores, you can log in through [shopify.com/partners](http://www.shopify.com/partners) (creds in 1pass) or find out who might have a username and password. 
+
+### Stores for testing (these should be pw-protected) ###
+
++ [barrel-dev-shop.myshopify.com](http://barrel-dev-shop.myshopify.com) (general sandbox)
++ [sugar-in-tea.myshopify.com](http://sugar-in-tea.myshopify.com) (Seasons theme tester)
++ [langosh-group3762.myshopify.com](http://langosh-group3762.myshopify.com) (Weekend theme tester)
+
+
+### Demo stores (do not test on the published themes in these stores, please!) ###
+
++ **Seasons themes**
+  - [Spring Jewelry](http://barrel-jewelry.myshopify.com)
+  - [Fall Chocolates](http://barrel-chocolate.myshopify.com)
+  - [Winter Beauty](http://barrel-beauty.myshopify.com)
++ **Weekend themes**
+  - [Outdoor Apparel](http://outdoor-apparel.myshopify.com/)
+  - [Sunday Coffee](http://barrel-coffee.myshopify.com/)
+  - [Bow Wow Ties](http://pet-accessories-3.myshopify.com/)
+
