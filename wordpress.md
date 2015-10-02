@@ -122,6 +122,22 @@ The general composition of your templates should follow the template-loop-templa
 
 With regards to the template hierarchy, it’s best to use known templates for post type landing pages when possible. If you have a ‘news’ post type, it would make sense that you have a landing page to show all news articles. If your other post types fit with the same style of output as your news, you can get away with using only the archive.php template file. You can use variations within the loop portion of the archive template should any post type deviate from the norm. Finally you could use the archive-$post_type.php template. These practices ensure there is a template for these data types.
 
+### Images
+
+Always use Featured Image sizes sized to pull the appropriate size image, never have the template display the full size image. Add custom image sizes to your theme functions. 
+
+    /**
+     *
+     * Add image sizes for thumbnails
+     *
+     * @return  void
+     */
+    function add_image_sizes() {
+        add_image_size( 'category-thumb', 300 ); // 300 pixels wide (and unlimited height)
+        add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
+    }
+    add_action( 'after_setup_theme', 'add_image_sizes' );
+    
 ### Rewrites Beware
 
 WordPress follows a set of predefined rewrite rules to accomplish assembling the templates. You can override these rules, but do so with caution. Generally adding rewrite rules should be a last resort when normal routes conflict with custom ones. An example might occur when you want your news blog to appear under a base of news/ but you don’t want the rest of the site to appear under the news/ base. You can instead add a rewrite rule to override the url for your posts. Additionally you might have a normal page at news/ which you’re using for general page content. This is a very tricky situation and can only be resolved by modifying rewrite rules. You an resort to creating a different path so that they do not conflict, but you might be left with a bunch of funky routes with similar naming conventions which could be confusing to the user.
