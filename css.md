@@ -12,15 +12,27 @@ Read: *If it makes sense to you, but doesn't conform to someone else's mental mo
 Conversly: *If you think your way is better, you'll need to convert someone's entire way of thinking about it in order to convince them.*
 
 ## TOC
-1. [Naming](#naming)
+1. [Code Structure](#structure)
+1. [Build Process](#builds)
+2. [Naming](#naming)
+3. [Naming Convention](#naming)
+4. [Nesting](#nesting)
+5. [Mixins & Extends](#mixins-and-extends)
+6. [Stateful Classes](#stateful-classes)
+7. [Javascript Hooks](#javascript)
+8. [Breakpoints](#breakpoints)
+9. [Misc](#misc)
 
 ### Structure
 TODO
 
 Where to put variables?
 
-###SASS
-Use `.scss`, but don't be afraid to use `.css`, \*gasp\*.
+###Builds
+- use `.scss` dialect
+  - or `.css`, \*gasp\*
+- Autoprefixer
+- minify for production
 
 ### Naming
 Barrel uses [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/). The accronym stands for classifications of selectors: block, elements, and modifiers. You already use these, but may not have thought about them as distinct. BEM just aims to codify them into a more readable, transparent convention.
@@ -154,6 +166,24 @@ The problem is exacerbated when you don't follow a syntax like BEM. For example:
 ```
 In the above, if `.hero` lives within `.about-page`, `.hero .image` will inherit the same styles as those from `.about-page`. This *compounds* the properties, and makes it harder to maintain. A better alternative would be to use a Modifier class (along with BEM, of course), or separate the *base* styles from the *implementation specific* and group them into a class, which can be applied to both elements.
 
+BEM syntax implies that elements live within their parent Block. **However,** this does not mean you should nest BEM selectors. One of the biggest benefits of this system is decreased reliance on external dependencies (other classes that influence styles). With namespaced classes, the readability benefit you see with nesting normal is diminished, and is replaced by contextual styling issues (dependencies), should you choose to nest selectors.
+```css
+/* don't do this */
+.hero {
+  .hero__button {
+    ... styles ...  
+  }  
+}
+
+/* do this */
+.hero {
+  ...
+}
+.hero__button {
+  ...  
+}
+```
+
 ###Mixins & Extends
 Both are powerful, but can be very expensive. Ground rules:
 - never extend a class within a nested selector structure
@@ -163,10 +193,13 @@ Both are powerful, but can be very expensive. Ground rules:
 - be careful when you include a mixin that contains *implementation specific* properties
 
 **In general:**
-Mixins duplicate code, so be careful what you're duplicating. Extends *hoist* selectors, so pay attention how long you selectors get, and understand what causes them.
+Mixins duplicate code, so be careful what you're duplicating. Extends *hoist* selectors, so pay attention how long you selectors get, and understand what causes them. If you don't understand Mixins or Extends and their possible side-effects, it's probably best to avoid using them.
+
+**But:**
+Utility mixins like for gradients, etc, are a different beast entirely and are extremely helpful in certain situations. For instance, if Autoprefixer is not available (like on a Shopify build), a mixin can be used to prefix transitions and transforms.
 
 ###Stateful Classes
-Introduced by SMACSS, stateful classes tell a developer that a component is in a current *state*, or that a script is acting upon the component. Stateful classes *are not global*, meaning they do not carry styles on their own. Join stateful classes to an existing selector using "active" prefixes `.is-`, `.has-`, `.was-`, etc. 
+Introduced by SMACSS, stateful classes tell a developer that a component is in a current *state*, or that a script is acting upon the component. Stateful classes *are not global*, meaning they do not carry styles on their own. Scope stateful classes to an existing selector using "active" prefixes `.is-`, `.has-`, `.was-`, etc. 
 
 ```css
 .info__tab {
@@ -174,10 +207,13 @@ Introduced by SMACSS, stateful classes tell a developer that a component is in a
   &.is-active {
     color: white; 
   }
+  &.has-content {
+    ...  
+  }
 }
 ```
 
-###Javascript Hooks
+###Javascript
 Never select an element in javascript by a standard class, especially one that has properties defined on it. Always use `.js-` prefixes so that other developers know what classes are being used in CSS, and which are used in JS.
 
 ###Breakpoints
@@ -194,23 +230,23 @@ Breakpoints should be kept in their own partial for ease of use. They should be 
 ###Misc
 - avoid `*` selectors, they're slow and can be dangerous if applied incorrectly
 - Instead of relying on `!important`, use CSS specificity to override styles when necessary.
+```css
+/* page-title.scss */
+.page-title {
+  .button {
+    color: blue;  
+  }  
+}
 
-  *Don't:*
-  ```
-  #element {
-    color: black;
-  }
-  .blue {
-    color: blue !important;
-  }
-  ```
-  
-  *Do:*
-  ```
-  #element {
-    color: black;
-  }
-  #element.blue {
-    color: blue;
-  }
-  ```
+/* don't do this */
+.hero__button {
+  color: black !important;  
+}
+
+/* do this */
+.hero {
+  .hero__button {
+    color: black;  
+  }  
+}
+```
