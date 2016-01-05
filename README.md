@@ -23,6 +23,30 @@ Barrel Development Best Practices
 ### General Practices
 All projects regardless of the langauges and technologies used have a few common rules and best practices to follow. Please review the individual topics above for more specific cases.
 
+#### String Manipulation
+When outputting strings from within code, be sure to use string formatting syntaxes to allow for better readability. See the following code samples.
+
+**PHP**
+```php
+$string_formatted = sprintf("Welcome, %s. Today is %s", $username, date('Y-m-d'));
+echo $string_formatted;
+// or to output immediately...
+printf("Welcome, %s. Today is %s", $username, date('Y-m-d'));
+```
+
+**JS** — javascript has no native string formatting methods but several [node modules](https://www.npmjs.com/search?q=string+format) exist
+
+*using [`js-string-format`](https://www.npmjs.com/package/js-string-format) python clone*
+
+```javascript
+var string_formatted = 'Welcome, {0}. Today is {1}'.format([data.username, new Date().toString()])
+```
+
+*using [`sprintf`](https://github.com/alexei/sprintf.js) php clone*
+```javascript
+var string_formatted = sprintf("Welcome, %s. Today is %s", data.username, new Date().toString());
+```
+
 #### Documentation
 All code should use a commenting syntax that is parsable and standard. Most of the comment-parsers utilize a java-doc-style syntax. For php, this is phpdoc; for javascript, this is jsdoc; for java, this is javadoc; and for ruby, this is rubydoc. See [Documentation Guidelines](documentation.md) for more details.
 
