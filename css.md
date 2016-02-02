@@ -13,26 +13,100 @@ Conversly: *If you think your way is better, you'll need to convert someone's en
 
 ## TOC
 1. [Code Structure](#structure)
-1. [Build Process](#builds)
-2. [Naming](#naming)
-3. [Naming Convention](#naming)
-4. [Nesting](#nesting)
-5. [Mixins & Extends](#mixins-and-extends)
-6. [Stateful Classes](#stateful-classes)
-7. [Javascript Hooks](#javascript)
-8. [Breakpoints](#breakpoints)
-9. [Misc](#misc)
+2. [Build Process](#builds)
+3. [Selectors](#selectors)
+4. [Naming](#naming)
+5. [Naming Convention](#naming)
+6. [Nesting](#nesting)
+7. [Mixins & Extends](#mixins-and-extends)
+8. [Stateful Classes](#stateful-classes)
+9. [Javascript Hooks](#javascript)
+10. [Breakpoints](#breakpoints)
+11. [Misc](#misc)
+
+###Base Rules
+1. Use good selector intent. Be proactive and methodical.
+2. Write everything to be reusable and location independant.
+3. Don't nest if you can help it.
+4. Keep selectors as short as possible.
+5. Comment as you go.
+
+The rest of this doc will explain how to do the above ;)
 
 ### Structure
-TODO
-
-Where to put variables?
+```bash
+base/
+  |– settings
+  |– colors
+  |- whitespace
+  |– grid
+  |– etc
+elements/
+  |– forms
+  |– buttons
+  |– etc
+components/
+  |– caption
+  |– responsive-image
+  |– slideshow
+  |– etc
+modules/
+  |– hero
+  |– main-slideshow
+  |– etc
+templates/
+  |– about
+  |– etc
+```
+The main goal here is starting from the most base-level styles and working our way up (down, in this list) in specificity. Think about it in terms of what can be reused. Grid classes can be used on elements like form fields, which in turn can be used within small components, which in turn can be composed into larger modules, which in turn make up pages and templates.
 
 ###Builds
 - use `.scss` dialect
   - or `.css`, \*gasp\*
 - Autoprefixer
 - minify for production
+
+###Selectors
+Always use **classes.** IDs shouldn't have a place in your CSS. Since their very nature is one of *non-reusability*, they work against the natural reuse possible with CSS and the cascade.
+
+Don't think about pieces as being unique. They hardly every need to be.
+
+Another thing to talk about here is *selector intent*. Selector intent is the process of deciding what needs to be styles and how you plan to go about it. Selector intent implies that you are narrow in your focus when crafting your selectors. For example, when crafting your main menu, you shouldn't do this:
+```scss
+header {
+  ul {
+    li {
+      //styles  
+    }  
+  }  
+}
+```
+Now you're styling any `li` within a `ul` that is also within a `header`, which also means the ability to reuse this code is nil. If you're aiming to style menu items, then be specific and concise.
+```scss
+// header
+.site-nav {
+  // styles  
+}
+
+// li
+.menu-item {
+  // styles
+}
+```
+And if you can't add classes (like in Wordpress menus, where it's pretty difficult), you can still have selector intent:
+```scss
+.main-nav {
+  // ONLY main menu items
+  > li {
+    // styles  
+  } 
+
+  // ONLY submenu items
+  > li ul > li {
+    // styles  
+  }
+}
+```
 
 ### Naming
 Barrel uses [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/). The accronym stands for classifications of selectors: block, elements, and modifiers. You already use these, but may not have thought about them as distinct. BEM just aims to codify them into a more readable, transparent convention.
@@ -228,8 +302,8 @@ Breakpoints should be kept in their own partial for ease of use. They should be 
 * For best performance, animate CSS transform properties instead of position, margin, height/width, etc. whenever possible.
 
 ###Misc
-- avoid `*` selectors, they're slow and can be dangerous if applied incorrectly
-- Instead of relying on `!important`, use CSS specificity to override styles when necessary.
+- don't use `*` selectors, they're slow and can be dangerous if applied incorrectly
+- Instead of relying on `!important`, use CSS specificity to override styles when necessary. BEM should remove any need for this, but in the event it comes up:
 ```css
 /* page-title.scss */
 .page-title {
