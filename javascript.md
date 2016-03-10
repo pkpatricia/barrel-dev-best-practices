@@ -1,3 +1,108 @@
+#### Barrel Development Best Practices
+# JavaScript Best Practices
+
+## General Outline 
+- Common JS modules via NPM
+  - maintain a clean `package.json`
+  - use Browserify to bundle modules
+  - if a library is not on NPM, use Browserify Shim or similar to transform into a CJS module
+  - declare all dependencies at the top of each file, via `require()`
+- Build using Gulp
+  - see Barrel Base for boilerplate
+- Use vanilla javscript where possible
+  - if using jQuery, include as a `browser` dependency in your `package.json` and include it via `var $ = require('jquery')` in your `main.js` (et al) file.
+- At the time of this writing, ES5 is still generally preferred to ES6 + Babel
+- Add `<script>` tags before closing `body` tag, unless they need to be loaded immediately.
+
+## Styleguide
+- Use semi-colons for consistency
+  ```javascript
+  function log(){
+    // like this
+    console.log(str);
+
+    // not like this
+    console.log(str)
+  }
+  ```
+- Trailing commas + list un-assigned variables first
+  ```javascript
+  var unassigned, 
+      assigned = 'This variable is assigned';
+  ```
+- When writing ternary, use parentheses to mark the left-hand side argument
+  ```javascript
+  var duration = (speed === 'fast') ? 200 : 800;
+  ```
+
+## Workflow
+- Bundle using Browserify
+- Minify using Uglify
+
+## Things to Keep In Mind
+
+#### You don't need to declare everything within `$.ready()`.
+Only declare what initiates your application within the `.ready()`. Keep everything else scoped and modularlized as needed.
+
+```javascript
+function App(){
+  ...
+}
+
+// Or $(document).ready();
+jQuery(function($){
+  new App();
+});
+```
+
+#### Avoid unecessary `if ... else` statements.
+While they are very explicit, they add unecessary visual clutter in large files. Use ternary for simple value checking. Where multiple levels are needed, `if ... else` is still preferable. 
+
+## Tips & Tricks
+
+#### Not everything needs to use the Constructor Pattern 
+Class based (contructor based) javascript is great, and mimics the OOP principles of other languages. Use it if you need to generate many of something based on a base configuration, so that each of your returned objects has access to a shared pool of `prototype` methods.
+
+But, using the Constructor Pattern isn't *technically* necessary if all you want to use it for is the ability to share properties between methods via the scoped value of `this`. For these instances, use of plain functions or Module Patterns (object literals) is perfectly fine, and usually more intuitive.
+
+```javascript
+// You don't need this...
+function Menu(el){
+  this.menu = document.querySelector(el);
+  this.toggle = this.menu.querySelector('.js-menu'); 
+
+  this.toggle.addEventListener('click', this.clicker().bind(this));
+}
+Menu.prototype.clicker = function(){
+  this.menu.className += ' is-visible';
+}
+
+// ...when you can write it like this.
+function Menu(el){
+  var menu = document.querySelector(el),
+      toggle = this.menu.querySelector('.js-menu'); 
+
+  toggle.addEventListener('click', function(){
+      
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Barrel Development Best Practices
 
 # JavaScript Best Practices
