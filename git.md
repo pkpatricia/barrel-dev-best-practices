@@ -81,7 +81,7 @@ Github Issues are a great way to keep track of bugs and feature requests. Issues
 
 To link an issue, simply use the special [issue syntax](https://help.github.com/articles/closing-issues-via-commit-messages) within a commit message. When your commit is merged into the "master" branch, the issue will close automatically.
 
-For Example, given the issue `#21 - Usernames should link to the user's profile`, you could add the folliwing commit:
+For Example, given the issue `#21 - Usernames should link to the user's profile`, you could add the following commit:
 
 ```
 git add .
@@ -91,6 +91,11 @@ git commit -m "fixes #21, usernames now link to user's profile"
 Once merged into "master", the keyword _"fixes #21"_ lets Github know to close issue #21 and add a reference to this commit.
 
 ## Quick Reference
+
+**Check status of branch where you're at:**
+```
+git status
+```
 
 **Retrieve/update all remote tracking branches:**
 ```
