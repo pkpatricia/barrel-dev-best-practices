@@ -18,11 +18,12 @@
 4. [Naming](#naming)
 5. [Naming Convention](#naming)
 6. [Nesting](#nesting)
-7. [Mixins & Extends](#mixins-and-extends)
-8. [Stateful Classes](#stateful-classes)
-9. [Javascript Hooks](#javascript)
-10. [Breakpoints](#breakpoints)
-11. [Misc](#misc)
+7. [Breakpoints](#breakpoints)
+8. [Variables](#variables)
+9. [Mixins & Extends](#mixins-and-extends)
+10. [Stateful Classes](#stateful-classes)
+11. [Javascript Hooks](#javascript)
+12. [Misc](#misc)
 
 ###Base Rules
 1. Use good selector intent. Be proactive and methodical.
@@ -325,6 +326,19 @@ We're writing SASS for a reason: so we can cheat. Media queries are much simpler
 }
 // etc
 ```
+
+###Variables
+Variables should be used as a singular reference to a value that appears often in your CSS, much like how you might configure classes to use only one or a few values and then reuse the class throughout your markup. In this sense, variables are to be used as values, and not as configuration, as you might with a framework. Using a collection of variables to control the appearance of elements and components is generally an unecessary abstraction for a site not built with a defined interface i.e. Bootstrap.  
+
+Basically, think of variables as controlling *properties* instead of components, and be mindful of what properties are being affected within the CSS you write, as opposed to relying on configuration to handle the complexity.
+
+**Naming:**
+SASS variables support BEM, and it helps to add context to the variable you're using. Otherwise, use all lowercase, `_` (underscore) separated variable names.
+
+**Where to put variables:**
+TODO
+1. In a single partial, or in the partials they are used within?
+2. Naming convention
 
 ###Mixins & Extends
 Both are powerful, but can be very expensive. Ground rules:
