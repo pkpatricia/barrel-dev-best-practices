@@ -1,28 +1,29 @@
-# Overall Goals
-1. high maintainability
-2. strict syntax
+# Goals
+1. Maintainability
+2. Strict syntax
   - allows for linting
   - self documenting
-3. fast 
-4. well commented
-
-> "Obviousness comes from conforming to people’s existing mental models." - [Julie Zhou](https://medium.com/the-year-of-the-looking-glass/good-design-a89c15136ba6#.9h8jfoyr5)
-
-Read: *If it makes sense to you, but doesn't conform to someone else's mental model, it doesn't make sense to them.*
-Conversly: *If you think your way is better, you'll need to convert someone's entire way of thinking about it in order to convince them.*
+  - more readable
+3. Flexibility
+  - encourages reuse
+  - context agnostic styles
+3. Speed 
+  - performant selectors
+4. Well commented
 
 ## TOC
 1. [Code Structure](#structure)
-2. [Build Process](#builds)
+2. [Workflow](#workflow)
 3. [Selectors](#selectors)
 4. [Naming](#naming)
 5. [Naming Convention](#naming)
 6. [Nesting](#nesting)
-7. [Mixins & Extends](#mixins-and-extends)
-8. [Stateful Classes](#stateful-classes)
-9. [Javascript Hooks](#javascript)
-10. [Breakpoints](#breakpoints)
-11. [Misc](#misc)
+7. [Breakpoints](#breakpoints)
+8. [Variables](#variables)
+9. [Mixins & Extends](#mixins-and-extends)
+10. [Stateful Classes](#stateful-classes)
+11. [Javascript Hooks](#javascript)
+12. [Misc](#misc)
 
 ###Base Rules
 1. Use good selector intent. Be proactive and methodical.
@@ -33,7 +34,14 @@ Conversly: *If you think your way is better, you'll need to convert someone's en
 
 The rest of this doc will explain how to do the above ;)
 
-### Structure
+###Useful Definitions
+_**Base Properties**_
+Properties declared within a class that are low-level, meaning they are shared among many classes and not usually subject to change (but not always). Examples are `display`, `position`, etc.
+
+_**Implementation Properties**_
+Properties declared within a class that are specific to the context of the element that receives the class. These are things that are not easily shared due to their often unique values, or necessity of change (like whitespace between breakpoints). Examples include `margin`, `padding`, `::after/::before`, etc.
+
+###Structure
 ```bash
 base/
   |– settings
@@ -60,7 +68,7 @@ templates/
 ```
 The main goal here is starting from the most base-level styles and working our way up (down, in this list) in specificity. Think about it in terms of what can be reused. Grid classes can be used on elements like form fields, which in turn can be used within small components, which in turn can be composed into larger modules, which in turn make up pages and templates.
 
-###Builds
+###Workflow
 - use `.scss` dialect
   - or `.css`, \*gasp\*
 - Autoprefixer
@@ -240,7 +248,7 @@ The problem is exacerbated when you don't follow a syntax like BEM. For example:
 ```
 In the above, if `.hero` lives within `.about-page`, `.hero .image` will inherit the same styles as those from `.about-page`. This *compounds* the properties, and makes it harder to maintain. A better alternative would be to use a Modifier class (along with BEM, of course), or separate the *base* styles from the *implementation specific* and group them into a class, which can be applied to both elements.
 
-BEM syntax implies that elements live within their parent Block. **However,** this does not mean you should nest BEM selectors. One of the biggest benefits of this system is decreased reliance on external dependencies (other classes that influence styles). With namespaced classes, the readability benefit you see with nesting normal is diminished, and is replaced by contextual styling issues (dependencies), should you choose to nest selectors.
+BEM syntax implies that elements live within their parent Block. **However,** this does not mean you should nest BEM selectors. One of the biggest benefits of this system is decreased reliance on external dependencies (other classes that influence styles). If you nest namespaced classes, the readability benefit you typically see with nesting is diminished, and is replaced by contextual styling issues (dependencies).
 ```css
 /* don't do this */
 .hero {
@@ -257,6 +265,80 @@ BEM syntax implies that elements live within their parent Block. **However,** th
   ...  
 }
 ```
+
+###Breakpoints
+Ideally, breakpoints should be [device agnostic](http://trentwalton.com/2014/03/10/device-agnostic/), meaning they should be defined based on the content, not devices, and you [should use EMs](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/) where possible. With SASS it's easy to convert [pixels to EMs.](https://github.com/estrattonbailey/svbstrate/blob/master/src/base/_breakpoints.scss)
+
+Media blocks should be written with `min-width` based media queries whenever possible. Avoid mixing of `min-width` and `max-width`, since specificity and readability is easily complicated when thinking in both spaces.
+
+Avoid writing *all* styles for either desktop or mobile, then writing your opening `@media (min-width ...` followed by *all* styles for that breakpoint. Instead, declare media blocks for your classes *within their context.* This helps with readability, because you can more easily reference responsive values for the context you're working within, often without even scrolling your text editor window. In a 500 line partial, having to scroll to the bottom to find responsive styles is a time-suck and makes writing new styles difficult for those not familiar with the code.
+
+Don't do this:
+```css
+// mobile styles
+.header {
+  // styles 
+}
+.header__links {
+  // styles  
+}
+.header__link {
+  // styles  
+}
+
+// tablet styles
+@media (min-width: break(874px)){
+  .header {
+    // styles 
+  }
+  .header__links {
+    // styles  
+  }
+  .header__link {
+    // styles  
+  }
+}
+
+// desktop styles
+@media (min-width: break(1200px)){
+  .header {
+    // styles 
+  }
+  .header__links {
+    // styles  
+  }
+  .header__link {
+    // styles  
+  }
+}
+```
+
+We're writing SASS for a reason: so we can cheat. Media queries are much simpler written like this:
+```css
+.header {
+  // mobile styles
+  @media (min-width: break(874px)){
+    // tablet styles
+  }
+  @media (min-width: break(1200px)){
+    // desktop styles
+  }
+}
+// etc
+```
+
+###Variables
+Variables should be used as a singular reference to a value that appears often in your CSS, much like how you might configure classes to use only one or a few values and then reuse the class throughout your markup. In this sense, variables are to be used as values, and not as configuration, as you might with a framework. Using a collection of variables to control the appearance of elements and components is generally an unecessary abstraction for a site not built with a defined interface i.e. Bootstrap.  
+
+Basically, think of variables as controlling *properties* instead of components, and be mindful of what properties are being affected within the CSS you write, as opposed to relying on configuration to handle the complexity.
+
+**Naming:**
+SASS variables support BEM, and it helps to add context to the variable you're using. Otherwise, use all lowercase, `_` (underscore) separated variable names.
+
+**Where to put variables:**
+TODO
+1. In a single partial, or in the partials they are used within?
+2. Naming convention
 
 ###Mixins & Extends
 Both are powerful, but can be very expensive. Ground rules:
@@ -289,9 +371,6 @@ Introduced by SMACSS, stateful classes tell a developer that a component is in a
 
 ###Javascript
 Never select an element in javascript by a standard class, especially one that has properties defined on it. Always use `.js-` prefixes so that other developers know what classes are being used in CSS, and which are used in JS.
-
-###Breakpoints
-Breakpoints should be kept in their own partial for ease of use. They should be defined based on the content, not devices, and you [should use EMs](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/) where possible. With SASS it's easy to convert [pixels to EMs.](https://github.com/estrattonbailey/svbstrate/blob/master/src/base/_breakpoints.scss)
 
 ### Animation ([more](http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/))
 * Use transitions for simple changes from one style to another. Use keyframe animations for more complex scripted actions.
