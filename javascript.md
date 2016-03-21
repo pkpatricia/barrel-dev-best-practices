@@ -14,29 +14,32 @@
   - can I use this on other projects?
   - can I use this elsewhere within your current project?
   - what if this needs to change later?
+  - what pieces can I abstract from this piece of code?
 4. Speed
   - can I make this just as readable/maintainable in vanilla js?
-  - could this have performance impacts down the line?
-  - can I make this asynchronous?
+  - what are the performance impacts of this code?
 
 * * *
 
-## General Outline 
-- Import modules via NPM
+## Workflow 
+1. Import modules via NPM
   - maintain a clean `package.json`
-  - use Browserify to bundle modules
+2. Build using Gulp
+  - see Barrel Base for boilerplate
+3. Use Browserify to bundle modules
   - if a library is not on NPM, use Browserify Shim or similar to transform into a common-js module
   - declare all dependencies at the top of each file, via `require()`
-- Build using Gulp
-  - see Barrel Base for boilerplate
-- Use vanilla javscript where possible
-  - if using jQuery, include as a `browser` dependency in your `package.json` and include it via `var $ = require('jquery')` in your `main.js` (et al) file.
-- Modules that require javascript should have their own JS partial, which are instantiated via our `data-module-init` pattern on page load.
+4. Use uglify to compress files production files
+  - skipping compression during dev using a separate build task is ideal
+5. Modules that require javascript should have their own JS partial, which are instantiated via our `data-module-init` pattern inside `main.js` on page load.
   - see Barrel Base for examples
-- At the time of this writing, ES5 is still generally preferred to ES6 + Babel
-- Add `<script>` tags before closing `body` tag, unless they need to be loaded immediately.
 
 ## Styleguide
+- Use vanilla javscript where possible
+  - if using jQuery, include as a `browser` dependency in your `package.json` and include it via `var $ = require('jquery')` in your `main.js` (et al) file.
+- Use of ES6 is OK, but _document_ the build steps you are using 
+  - use Babel to transpile
+  - do not use anything that is not on the standards track, i.e. anything beyond the ES2015 (ES6) spec, like ES2016, ES2017
 - Use semi-colons for consistency
   ```javascript
   function log(){
@@ -69,9 +72,8 @@
   }
   ```
 
-## Workflow
-- Bundle using Browserify
-- Minify using Uglify
+## Feature Detection
+Use a _custom_ build of Modernizr when necessary. Ensure the generated URL is not stripped from the source code, so that the package can be amended in the future if needed.
 
 ## Things to Keep In Mind
 
@@ -90,4 +92,13 @@ jQuery(function($){
 ```
 
 #### Avoid unecessary `if ... else` statements.
-While they are very explicit, they add unecessary visual clutter in large files. Use ternary for simple value checking. Where multiple levels are needed, `if ... else` is still preferable. 
+While they are very explicit, they add unecessary visual clutter in large files. Use ternary for simple value checking. Where multiple levels are needed, `if ... else` is still preferable.
+
+#### When to use `switch()` statements.
+TODO
+
+## Advanced Techniques
+#### TODO
+1. Rendering pipeline
+2. RAIL principles
+3. Web workers
