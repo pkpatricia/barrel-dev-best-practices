@@ -81,7 +81,7 @@ Github Issues are a great way to keep track of bugs and feature requests. Issues
 
 To link an issue, simply use the special [issue syntax](https://help.github.com/articles/closing-issues-via-commit-messages) within a commit message. When your commit is merged into the "master" branch, the issue will close automatically.
 
-For Example, given the issue `#21 - Usernames should link to the user's profile`, you could add the folliwing commit:
+For Example, given the issue `#21 - Usernames should link to the user's profile`, you could add the following commit:
 
 ```
 git add .
@@ -91,49 +91,107 @@ git commit -m "fixes #21, usernames now link to user's profile"
 Once merged into "master", the keyword _"fixes #21"_ lets Github know to close issue #21 and add a reference to this commit.
 
 ## Quick Reference
-Push to branch 'master' on remote 'origin':
+
+**Check status of branch where you're at:**
+```
+git status
+```
+
+**Retrieve/update all remote tracking branches:**
+```
+git fetch --all
+```
+
+**Push to branch 'master' on remote 'origin':**
 ```
 git push origin master
 ```
-Pull from branch 'master' on remote 'origin':
+
+**Pull from branch 'master' on remote 'origin':**
 ```
 git pull origin master
 ```
-Retrieve commit hash of current commit, last commit, five commits prior:
+
+**Stage/add all untracked files:**
+```
+git add --all
+```
+Or, to add just the files in the current directory:
+```
+git add .
+```
+
+**Commit all staged/added files:**
+```
+git commit -a
+```
+To add a message, add the `-m` flag:
+```
+# commit all changes, with message
+git commit -am "<message>"
+# commit staged changes, with message
+git commit -m "<message>"
+```
+
+**Checkout an existing branch 'staging':**
+```
+git checkout staging
+```
+
+**Create a new branch `test`:**
+```
+git branch test
+```
+Or, create a new branch `test` *and* switch to the new branch:
+```
+git checkout -b test
+```
+
+**Delete branch 'test':**
+```
+git branch -D test
+```
+
+**Add a remote 'origin':**
+```
+git remote add origin https://github.com/barrel/barrel-dev-best-practices.git
+```
+
+**List all remotes verbosely:**
+```
+git remote -v
+```
+
+**View past commits, with hash and messages:**
+```
+git log
+```
+You can optionally pass a number of commits. In this example, 10:
+```
+git log -10
+```
+
+**Retrieve commit hash of current commit, last commit, five commits prior:**
 ```
 git rev-parse HEAD
 git rev-parse HEAD~
 git rev-parse HEAD~5
 ```
-Stage/add all untracked files:
+
+**You forgot to change or commit a file in the last commit:**
 ```
-git add --all
-```
-Commit all staged/added files:
-```
-git commit --all
-```
-Checkout an existing branch 'staging':
-```
-git checkout staging
-```
-Retrieve/update all remote tracking branches:
-```
-git fetch --all
-```
-Create a new branch 'test':
-```
-git branch test
-```
-Delete branch 'test':
-```
-git branch -D test
-```
-Add a remote 'origin':
-```
-git remote add origin https://github.com/barrel/barrel-dev-best-practices.git
-```
-List all remotes verbosely:
-```
-git remote -v
+# add changed file
+git add path/to/file.js
+# or
+git add .
+
+# ammend last commit
+git commit --amend
+# this will open vim for you to add a commit message
+# enter your message, then type
+:wq
+# to save and commit the changes
+
+# alternatively, you can leave you last commit message unchanged
+git commit --amend --no-edit
 ```
