@@ -21,6 +21,34 @@
 
 * * *
 
+## Structure
+```bash
+# in src/js/ directory
+components/
+lib/
+main.js
+
+# in modules/
+hero/
+  |– hero.js
+  |- hero.handlebars
+slideshow/
+  |- slideshow.js
+  |– slideshow.handlebars
+```
+
+#### Root File (`main.js`) 
+TODO
+
+#### Components Directory
+TODO
+
+#### Lib Directory
+TODO
+
+#### Modules Directory
+TODO
+
 ## Workflow 
 1. Import modules via NPM
   - maintain a clean `package.json`
