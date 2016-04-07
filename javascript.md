@@ -24,10 +24,10 @@
 ## Structure
 ```bash
 # in src/js/ directory
-components/
 lib/
+vendor/ (optional)
 main.js
-
+  
 # in modules/
 hero/
   |– hero.js
@@ -38,25 +38,25 @@ slideshow/
 ```
 
 #### Root File (`main.js`) 
-TODO
-
-#### Components Directory
-TODO
+The main javascript file serves as the entry point for the Browserify bundle. This file should pull in global dependencies for the site and initialize them on page load if necessary.
 
 #### Lib Directory
-TODO
+The lib folder contains re-usable functions that can be used in your individual modules.
 
 #### Modules Directory
-TODO
+The modules folder contains templates and associated JavaScript functions which are initialized on load using the `data-module-init` attribute.
 
 ## Workflow 
-1. Import modules via NPM
+1. Import dependencies via NPM
   - maintain a clean `package.json`
+  - Install front-end plugins to `dependencies` using `npm install --save`
+  - Install gulp plugins and other build tools to `devDependencies` using `npm install --save-dev`
 2. Build using Gulp
   - see Barrel Base for boilerplate
 3. Use Browserify to bundle modules
   - if a library is not on NPM, use Browserify Shim or similar to transform into a common-js module
   - declare all dependencies at the top of each file, via `require()`
+  - module files should export a function using `module.exports`
 4. Use uglify to compress files production files
   - skipping compression during dev using a separate build task is ideal
 5. Modules that require javascript should have their own JS partial, which are instantiated via our `data-module-init` pattern inside `main.js` on page load.
