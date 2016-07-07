@@ -20,7 +20,7 @@ to the essays table
 
 ####Succinct (good):
 
-**Fixes BR-137 and BR-57** or **Add auto-save and site down error handler**
+**Fix BR-137 and BR-57** or **Add auto-save and site down error handler**
 * Add auto-save on timeout
 * Add auto-save functionality
 * Commit requires a migration for the time_remaining column to add to the essays table
