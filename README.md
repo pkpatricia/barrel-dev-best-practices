@@ -15,6 +15,7 @@ Barrel Development Best Practices
 - [Ruby / RoR](ruby.md)
 - [Shopify](shopify.md)
 - [WordPress](wordpress.md)
+- [SEO](seo.md)
 - [Task Runners](grunt.md)
 - [VM & Testing](http://infocenter.barrelny.com/how-to-browser-testing-procedures/)
 
@@ -80,3 +81,7 @@ This includes any @author comment.
 * All production code should produce assets that are fully compiled or minified and concatenated. See the [Javascript](javascript.md) guide for specific approaches towards including scripts.
 * Avoid unnecessary style overrides in favor of specificity and @media 
 * Limit usage of any framework and configure any frameworks to use as much code as is needed such as only including the components of bootstrap that will be used for your project.
+
+#####TODO
+- Add BP for form management, handling, validation
+- Add BP for testing of all types
