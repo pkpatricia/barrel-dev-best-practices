@@ -1,12 +1,19 @@
 ### Barrel Development Best Practices
 
 # Git Best Practices
+- [Repo Requirements](#repo-requirements)
 - [Commit Message Conventions](#commit-message-conventions)
 - [Commit Frequency](#commit-frequency)
 - [Working with Others](#working-with-others)
 - [Working on an Existing App](#working-on-an-existing-app)
 - [Github Issues](#issues)
 - [Git Quick Reference](#quick-reference)
+
+## Repo Requirements
+1. The repository name should follow the "slugified" convention such that the name is **all lowercase**, **uses hyphens** to separate words instead of spaces or casing, and **omits articles** (a/an/the).
+2. The repo should contain a description, which should at minimum describe the type of project, WordPress, static HTML, Shopify. Ideally this also contains a short description of the site itself.
+3. All repositories require a `README.md` at the root of the project as well as in any other places such as theme or plugin directories where specific documentation for development is required. A `CONTRIBUTING.md` file should be provided to assist contributing developers on the project with any project-specific contribution guidelines.
+4. When possible, enable both the JIRA and HipChat integrations.
 
 ## Commit Message Conventions
 1. Commit header (first line) should succinctly describe changes in high-level changes. Think: Fix, Add, Remove, Change.
