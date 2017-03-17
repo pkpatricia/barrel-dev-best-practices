@@ -2,40 +2,63 @@
 
 # Git Best Practices
 - [Repo Requirements](#repo-requirements)
+- [What to Commit](#what-to-commit)
 - [Commit Message Conventions](#commit-message-conventions)
 - [Commit Frequency](#commit-frequency)
-- [Working with Others](#working-with-others)
+- [Working with Others](#working-with-others) and Workflows
 - [Working on an Existing App](#working-on-an-existing-app)
 - [Github Issues](#issues)
 - [Git Quick Reference](#quick-reference)
+
+**Note:** Barrel mostly uses *GitLab* for the truth repository, but occasionally we will use *GitHub* and/or *BitBucket* repositories as well. For new developers, please request access immediately.
 
 ## Repo Requirements
 1. The repository name should follow the "slugified" convention such that the name is **all lowercase**, **uses hyphens** to separate words instead of spaces or casing, and **omits articles** (a/an/the).
 2. The repo should contain a description, which should at minimum describe the type of project, WordPress, static HTML, Shopify. Ideally this also contains a short description of the site itself.
 3. All repositories require a `README.md` at the root of the project as well as in any other places such as theme or plugin directories where specific documentation for development is required. A `CONTRIBUTING.md` file should be provided to assist contributing developers on the project with any project-specific contribution guidelines.
-4. When possible, enable both the JIRA and HipChat integrations.
+4. For sites that use Pantheon multidev environments, there is a [11 character](https://pantheon.io/docs/multidev/#create-a-new-multidev-environment) branch name limitation as well as some protected branches names. 
+5. When possible, enable both the JIRA and HipChat integrations (internal development only).
+
+## What to Commit
+**The Issue:** The biggest cause for conflict is compressed, compiled, transpiled, or compressed code. Reviewers often aren't as intimate with code, so recognizing and resolving conflicts becomes a pain-point.
+
+**The Solution:** First ensure that all compressed and processed code is committed on a dedicated commit. Do not push a commit that contains both source code and processed code; instead, try to contain all processed code in a single commit just before pushing code to review (environment) or merge request (branch). This allows reviewers to rebase (if necessary, when possible) without relying on the developer.
 
 ## Commit Message Conventions
 1. Commit header (first line) should succinctly describe changes in high-level changes. Think: Fix, Add, Remove, Change.
 2. Commit body (subsequent lines) should be imperative present tense, and break out into more low-level details.
 
-####Verbose (bad):
+**Verbose (bad):** avoid overly verbose message headers without references to ticketing or specs.
 
-**[BR-137] Site down message on error handler / [BR-57] Auto save & save on timeout**
-* This commit requires a migration for the time_remaining column to add
-to the essays table
+> **Site down message on error handler. This commit requires a migration for the time_remaining column to add
+> to the essays table**
 
-####Succinct (good):
+**Ambiguous (bad):** avoid ambiguous messaging that offers little insight to the actual changes or features.
 
-**Fix BR-137 and BR-57** or **Add auto-save and site down error handler**
-* Add auto-save on timeout
-* Add auto-save functionality
-* Commit requires a migration for the time_remaining column to add to the essays table
+> **Auto save & save on timeout**
+> * Update code for timeout
 
---
-Links for reference:
+**Succint (good):** be sure to include references to tickets or specifications while including more granular details as bullet points.
+
+> **Fix BR-137 and BR-57**
+>
+> * Add auto-save functionality when connection to client times out
+> * Add method to auto-save client details
+> * Commit requires a migration for the time_remaining column to add to the essays table
+
+**Detailed (good):** without references, do not forget to add more detailed bullet points.
+
+> **Add auto-save functionality and site down error handler**
+>
+> * Add auto-save functionality when connection to client times out
+> * Add method to auto-save client details
+> * Commit requires a migration for the time_remaining column to add to the essays table
+
+---
+**Links for reference:**
 - See github [article](https://help.github.com/articles/closing-issues-via-commit-messages/#keywords-for-closing-issues) on closing issues in commit messages.
 - See jira [article](https://confluence.atlassian.com/display/Cloud/Processing+JIRA+issues+with+commit+messages#ProcessingJIRAissueswithcommitmessages-Thecommands) on processing jira tickets with commit messages. Note at the very least, you can easily attach commits to a jira ticket by including the ticket reference in your commit message.
+- See gitlab [article](https://about.gitlab.com/2016/03/08/gitlab-tutorial-its-all-connected/) on referencing commits, merge requests, or issues. 
 
 ## Commit Frequency
 
@@ -51,6 +74,14 @@ Another benefit of naming your branch according to feature is that everyone will
 ## Working with Others
 
 Assume your code will be inherited by another person. You should **never** work directly on the "master" branch. It's best practice to make "feature branches", which can be merged into "master" as you complete features.  
+
+### Workflows
+
+Most new projects should follow either a **centralized** or **feature branch** workflow while most ongoing projects will follow **gitflow**. See [this](https://www.atlassian.com/git/tutorials/comparing-workflows) Atlassian article on comparing various workflows. Note that most workflows will need a lead or primary developer to manage the incoming code to ensure successful merges and integration.
+
+### Gitflow
+
+We currently recommend and use the [gitflow-avh](https://github.com/petervanderdoes/gitflow-avh) collection of extenstions to make gitflow easier. With that said, this does not prohibit developers from following gitflow using pure git commands. Also when using gitflow, the two most important things to handle at the end of a release or hotfix are updating the Changelog and incrementing versioning.
 
 #### Tips for working with [Feature] Branches
 
