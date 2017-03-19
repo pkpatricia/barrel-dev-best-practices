@@ -1,14 +1,14 @@
 # Goals
 1. Maintainability
 2. Strict syntax
-  - allows for linting
-  - self documenting
-  - more readable
+   - allows for linting
+   - self documenting
+   - more readable
 3. Flexibility
-  - encourages reuse
-  - context agnostic styles
+   - encourages reuse
+   - context agnostic styles
 3. Speed 
-  - performant selectors
+   - performant selectors
 4. Well commented
 
 ## TOC
@@ -25,7 +25,7 @@
 11. [Javascript Hooks](#javascript)
 12. [Misc](#misc)
 
-###Base Rules
+### Base Rules
 1. Use good selector intent. Be proactive and methodical.
 2. Write everything to be reusable and location independant.
 3. Don't nest if you can help it.
@@ -34,14 +34,14 @@
 
 The rest of this doc will explain how to do the above ;)
 
-###Useful Definitions
+### Useful Definitions
 _**Base Properties**_
 Properties declared within a class that are low-level, meaning they are shared among many classes and not usually subject to change (but not always). Examples are `display`, `position`, etc.
 
 _**Implementation Properties**_
 Properties declared within a class that are specific to the context of the element that receives the class. These are things that are not easily shared due to their often unique values, or necessity of change (like whitespace between breakpoints). Examples include `margin`, `padding`, `::after/::before`, etc.
 
-###Structure
+### Structure
 ```bash
 base/
   |– settings
@@ -68,13 +68,13 @@ templates/
 ```
 The main goal here is starting from the most base-level styles and working our way up (down, in this list) in specificity. Think about it in terms of what can be reused. Grid classes can be used on elements like form fields, which in turn can be used within small components, which in turn can be composed into larger modules, which in turn make up pages and templates.
 
-###Workflow
+### Workflow
 - use `.scss` dialect
   - or `.css`, \*gasp\*
 - Autoprefixer
 - minify for production
 
-###Selectors
+### Selectors
 Always use **classes.** IDs shouldn't have a place in your CSS. Since their very nature is one of *non-reusability*, they work against the natural reuse possible with CSS and the cascade.
 
 Don't think about pieces as being unique. They hardly every need to be.
@@ -119,7 +119,7 @@ And if you can't add classes (like in Wordpress menus, where it's pretty difficu
 ### Naming
 Barrel uses [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/). The accronym stands for classifications of selectors: block, elements, and modifiers. You already use these, but may not have thought about them as distinct. BEM just aims to codify them into a more readable, transparent convention.
 
-####B is for Block
+#### B is for Block
 Blocks are the root element of your module or component. Elements that make up that component are then scoped to the root using BEM syntax.
 
 Examples of blocks:
@@ -139,7 +139,7 @@ Examples of blocks:
 - use IDs, shouldn't need them
 
 
-####E is for Element
+#### E is for Element
 Elements are children of Blocks. They are usually the smallest parts of a Block scoped piece of DOM/CSS, and are preferential to selecting elements by HTML tag. Be careful not to confuse elements with other Blocks. BEM selectors should usually never be "deeper" than two levels i.e. a block followed by an element.
 
 Examples of elements:
@@ -162,7 +162,7 @@ Examples of elements:
 - try to keep selectors to only two "levels" deep
   - however, the syntax allows for it, so use with discretion, they get annoying to type out
 
-####M is for Modifier
+#### M is for Modifier
 Modifiers are the variants of a Block or Element within a Block. They can change any attribute on the selector they're applied to, but use caution when using Modifiers as a descender class. It can get tricky depending on where the definitions are located within your partial structure. Keep all modifiers of a class within it's parent definition.
 
 Examples of modifiers:
@@ -201,7 +201,7 @@ Modifiers can be tricky as selectors, especially when the Modifier class is appl
 }
 ```
 
-###Nesting
+### Nesting
 Nesting should be kept to a minimum. "As much as is necessary, but as litle as possible" is a good rule of thumb. It creates (oftentimes) unecessary specificity, which leads to the need to override styles. 
 
 For example:
@@ -266,7 +266,7 @@ BEM syntax implies that elements live within their parent Block. **However,** th
 }
 ```
 
-###Breakpoints
+### Breakpoints
 Ideally, breakpoints should be [device agnostic](http://trentwalton.com/2014/03/10/device-agnostic/), meaning they should be defined based on the content, not devices, and you [should use EMs](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/) where possible. With SASS it's easy to convert [pixels to EMs.](https://github.com/estrattonbailey/svbstrate/blob/master/src/base/_breakpoints.scss)
 
 Media blocks should be written with `min-width` based media queries whenever possible. Avoid mixing of `min-width` and `max-width`, since specificity and readability is easily complicated when thinking in both spaces.
@@ -327,7 +327,7 @@ We're writing SASS for a reason: so we can cheat. Media queries are much simpler
 // etc
 ```
 
-###Variables
+### Variables
 Variables should be used as a singular reference to a value that appears often in your CSS, much like how you might configure classes to use only one or a few values and then reuse the class throughout your markup. In this sense, variables are to be used as values, and not as configuration, as you might with a framework. Using a collection of variables to control the appearance of elements and components is generally an unecessary abstraction for a site not built with a defined interface i.e. Bootstrap.  
 
 Basically, think of variables as controlling *properties* instead of components, and be mindful of what properties are being affected within the CSS you write, as opposed to relying on configuration to handle the complexity.
@@ -340,7 +340,7 @@ TODO
 1. In a single partial, or in the partials they are used within?
 2. Naming convention
 
-###Mixins & Extends
+### Mixins & Extends
 Both are powerful, but can be very expensive. Ground rules:
 - never extend a class within a nested selector structure
 - never extend a class that contains another `@extend`
@@ -354,7 +354,7 @@ Mixins duplicate code, so be careful what you're duplicating. Extends *hoist* se
 **But:**
 Utility mixins like for gradients, etc, are a different beast entirely and are extremely helpful in certain situations. For instance, if Autoprefixer is not available (like on a Shopify build), a mixin can be used to prefix transitions and transforms.
 
-###Stateful Classes
+### Stateful Classes
 Introduced by SMACSS, stateful classes tell a developer that a component is in a current *state*, or that a script is acting upon the component. Stateful classes *are not global*, meaning they do not carry styles on their own. Scope stateful classes to an existing selector using "active" prefixes `.is-`, `.has-`, `.was-`, etc. 
 
 ```css
@@ -369,7 +369,7 @@ Introduced by SMACSS, stateful classes tell a developer that a component is in a
 }
 ```
 
-###Javascript
+### Javascript
 Never select an element in javascript by a standard class, especially one that has properties defined on it. Always use `.js-` prefixes so that other developers know what classes are being used in CSS, and which are used in JS.
 
 ### Animation ([more](http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/))
@@ -380,7 +380,7 @@ Never select an element in javascript by a standard class, especially one that h
 * In Blink and WebKit browsers a new layer is created for any element which has a CSS transition or animation on opacity. Therefore, excessive opacity transitions could result in the same issue of forcing a separate composite layer.
 * For best performance, animate CSS transform properties instead of position, margin, height/width, etc. whenever possible.
 
-###Misc
+### Misc
 - don't use `*` selectors, they're slow and can be dangerous if applied incorrectly
 - Instead of relying on `!important`, use CSS specificity to override styles when necessary. BEM should remove any need for this, but in the event it comes up:
 ```css
