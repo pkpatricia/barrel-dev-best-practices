@@ -22,7 +22,7 @@
 ## What to Commit
 **The Issue:** The biggest cause for conflict is compressed, compiled, transpiled, or compressed code. Reviewers often aren't as intimate with code, so recognizing and resolving conflicts becomes a pain-point.
 
-**The Solution:** First ensure that all compressed and processed code is committed on a dedicated commit. Do not push a commit that contains both source code and processed code; instead, try to contain all processed code in a single commit just before pushing code to review (environment) or merge request (branch). This allows reviewers to rebase (if necessary, when possible) without relying on the developer.
+**The Solution:** First _ensure that all compressed and processed code is committed on a dedicated commit_. Do not push a commit that contains both source code and processed code; instead, try to contain all processed code in a single commit just before pushing code to review (environment) or merge request (branch). This allows reviewers to rebase (if necessary, when possible) without relying on the developer.
 
 ## Commit Message Conventions
 1. Commit header (first line) should succinctly describe changes in high-level changes. Think: Fix, Add, Remove, Change.
@@ -78,6 +78,20 @@ Assume your code will be inherited by another person. You should **never** work 
 ### Workflows
 
 Most new projects should follow either a **centralized** or **feature branch** workflow while most ongoing projects will follow **gitflow**. See [this](https://www.atlassian.com/git/tutorials/comparing-workflows) Atlassian article on comparing various workflows. Note that most workflows will need a lead or primary developer to manage the incoming code to ensure successful merges and integration.
+
+#### Process
+
+In addition to pure git workflows, developers that work with Barrel must follow process guidelines outlined as follows:
+
+1. As mentioned in [Commit Frequency](#commit-frequency) section, any branches, including work-in-progress or development-only code, should be pushed to Barrel's repo (the truth repository) **daily** with an accompanying **Merge Request** (MR) and assigned to the lead developer. 
+2. If the feature or branch is still in progress, prepend "WIP: " to the title of the merge request, and outline what's been addressed and what's remaining in the body of the MR message body.
+ > **WIP: Add carousel feature**
+ > 
+ > - Adds carousel module for desktop
+ > - Working on responsive styles
+3. If a branch on an existing MR becomes outdated, it must be rebased on `develop` or `master` depending on whether it is a hotfix or feature to be added. Processing commits that include style or javascript minification, compression, or post-processing should be skipped in these cases as noted in the [What to Commit](#what-to-commit) section.
+4. Close the MR and delete any branches that do not get merged because a new branch was created in its place. Branches will be automatically deleted after a successful merge request.
+5. Resolve any discussions or issues raised directly in the git web interface (Gitlab, Github, and Bitbucket all have this feature) of a merge request to indicate the note was understood and/or fully executed.
 
 ### Gitflow
 
